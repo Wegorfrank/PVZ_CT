@@ -1,0 +1,2445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"基本挪表"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(gZombieDefs,4096)
+registersymbol(gZombieDefs)
+
+gZombieDefs:
+db 00 00 00 00 15 00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 A0 0F 00 00 C8 E9 66 00
+db 01 00 00 00 15 00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 00 00 00 00 BC E9 66 00
+db 02 00 00 00 15 00 00 00 02 00 00 00 03 00 00 00 01 00 00 00 A0 0F 00 00 AC E9 66 00
+db 03 00 00 00 36 00 00 00 02 00 00 00 06 00 00 00 05 00 00 00 D0 07 00 00 94 E9 66 00
+db 04 00 00 00 15 00 00 00 04 00 00 00 08 00 00 00 01 00 00 00 B8 0B 00 00 80 E9 66 00
+db 05 00 00 00 1E 00 00 00 02 00 00 00 0B 00 00 00 01 00 00 00 E8 03 00 00 6C E9 66 00
+db 06 00 00 00 15 00 00 00 04 00 00 00 0D 00 00 00 05 00 00 00 AC 0D 00 00 58 E9 66 00
+db 07 00 00 00 1D 00 00 00 07 00 00 00 10 00 00 00 05 00 00 00 D0 07 00 00 48 E9 66 00
+db 08 00 00 00 33 00 00 00 05 00 00 00 12 00 00 00 05 00 00 00 E8 03 00 00 38 E9 66 00
+db 09 00 00 00 3E 00 00 00 01 00 00 00 12 00 00 00 01 00 00 00 00 00 00 00 28 E9 66 00
+db 0A 00 00 00 15 00 00 00 01 00 00 00 15 00 00 00 05 00 00 00 00 00 00 00 14 E9 66 00
+db 0B 00 00 00 41 00 00 00 03 00 00 00 17 00 00 00 0A 00 00 00 D0 07 00 00 04 E9 66 00
+db 0C 00 00 00 1F 00 00 00 07 00 00 00 1A 00 00 00 0A 00 00 00 D0 07 00 00 FC E8 66 00
+db 0D 00 00 00 3F 00 00 00 03 00 00 00 1A 00 00 00 0A 00 00 00 D0 07 00 00 E8 E8 66 00
+db 0E 00 00 00 3C 00 00 00 03 00 00 00 1C 00 00 00 0A 00 00 00 DC 05 00 00 D0 E8 66 00
+db 0F 00 00 00 40 00 00 00 03 00 00 00 1F 00 00 00 0A 00 00 00 E8 03 00 00 B8 E8 66 00
+db 10 00 00 00 37 00 00 00 02 00 00 00 21 00 00 00 0A 00 00 00 D0 07 00 00 A8 E8 66 00
+db 11 00 00 00 3A 00 00 00 04 00 00 00 24 00 00 00 0A 00 00 00 E8 03 00 00 98 E8 66 00
+db 12 00 00 00 3D 00 00 00 04 00 00 00 26 00 00 00 0A 00 00 00 E8 03 00 00 8C E8 66 00
+db 13 00 00 00 5E 00 00 00 04 00 00 00 28 00 00 00 01 00 00 00 01 00 00 00 80 E8 66 00
+db 14 00 00 00 42 00 00 00 03 00 00 00 29 00 00 00 0A 00 00 00 E8 03 00 00 70 E8 66 00
+db 15 00 00 00 44 00 00 00 04 00 00 00 2B 00 00 00 0A 00 00 00 E8 03 00 00 60 E8 66 00
+db 16 00 00 00 43 00 00 00 05 00 00 00 2E 00 00 00 0A 00 00 00 DC 05 00 00 50 E8 66 00
+db 17 00 00 00 38 00 00 00 0A 00 00 00 30 00 00 00 0F 00 00 00 DC 05 00 00 44 E8 66 00
+db 18 00 00 00 39 00 00 00 0A 00 00 00 30 00 00 00 01 00 00 00 00 00 00 00 40 E8 66 00
+db 19 00 00 00 4A 00 00 00 0A 00 00 00 32 00 00 00 01 00 00 00 00 00 00 00 38 E8 66 00
+db 1A 00 00 00 15 00 00 00 01 00 00 00 63 00 00 00 01 00 00 00 A0 0F 00 00 C8 E9 66 00
+db 1B 00 00 00 15 00 00 00 04 00 00 00 63 00 00 00 01 00 00 00 B8 0B 00 00 C8 E9 66 00
+db 1C 00 00 00 15 00 00 00 03 00 00 00 63 00 00 00 0A 00 00 00 E8 03 00 00 C8 E9 66 00
+db 1D 00 00 00 15 00 00 00 03 00 00 00 63 00 00 00 0A 00 00 00 D0 07 00 00 C8 E9 66 00
+db 1E 00 00 00 15 00 00 00 03 00 00 00 63 00 00 00 0A 00 00 00 D0 07 00 00 C8 E9 66 00
+db 1F 00 00 00 15 00 00 00 04 00 00 00 63 00 00 00 0A 00 00 00 D0 07 00 00 C8 E9 66 00
+db 20 00 00 00 38 00 00 00 0A 00 00 00 30 00 00 00 0F 00 00 00 70 17 00 00 24 E8 66 00
+//桶钢门
+db 21 00 00 00 15 00 00 00 04 00 00 00 0D 00 00 00 05 00 00 00 AC 0D 00 00 58 E9 66 00
+
+40345D:
+lea ebx,[ebx*4+gZombieDefs]
+
+403A34:
+lea ecx,[eax*4+gZombieDefs]
+
+403B4E:
+lea ebx,[ebx*4+gZombieDefs]
+
+40D66C:
+lea ecx,[ecx*4+gZombieDefs]
+
+40D72C:
+lea esi,[esi*4+gZombieDefs]
+
+40D7E2:
+lea ebp,[ebp*4+gZombieDefs]
+
+40D8C8:
+lea edi,[edi*4+gZombieDefs]
+
+40F05D:
+lea eax,[ecx*4+gZombieDefs]
+
+412DA9:
+lea eax,[edx*4+gZombieDefs]
+
+46F91C:
+lea eax,[eax*4+gZombieDefs]
+
+5227AE:
+lea eax,[ecx*4+gZombieDefs]
+
+5369EC:
+lea eax,[eax*4+gZombieDefs]
+
+439B28:
+mov eax,[gZombieDefs+4]
+
+439F49:
+mov eax,[gZombieDefs+4]
+
+536A5F:
+mov edx,[ecx*4+gZombieDefs+4]
+
+409271:
+mov edx,[eax*4+gZombieDefs+8]
+
+4097D4:
+sub ecx,[gZombieDefs+8]
+
+409A01:
+sub ecx,[eax*4+gZombieDefs+8]
+
+40A0CC:
+mov ecx,[edx*4+gZombieDefs+8]
+
+412A5B:
+sub ebp,[edx*4+gZombieDefs+8]
+
+412CBE:
+sub edi,[eax*4+gZombieDefs+8]
+
+530206:
+mov esi,[edx*4+gZombieDefs+8]
+
+4556C8:
+mov edx,gZombieDefs+C
+
+455878:
+mov esi,gZombieDefs+C
+
+40D776:
+mov eax,[gZombieDefs+14]
+
+40F056:
+mov edx,[ecx*4+gZombieDefs+18]
+
+
+[DISABLE]
+dealloc(gZombieDefs)
+unregistersymbol(gZombieDefs)
+
+40345D:
+lea ebx,[ebx*4+0069DA80]
+
+403A34:
+lea ecx,[eax*4+0069DA80]
+
+403B4E:
+lea ebx,[ebx*4+0069DA80]
+
+40D66C:
+lea ecx,[ecx*4+0069DA80]
+
+40D72C:
+lea esi,[esi*4+0069DA80]
+
+40D7E2:
+lea ebp,[ebp*4+0069DA80]
+
+40D8C8:
+lea edi,[edi*4+0069DA80]
+
+40F05D:
+lea eax,[ecx*4+0069DA80]
+
+412DA9:
+lea eax,[edx*4+0069DA80]
+
+46F91C:
+lea eax,[eax*4+0069DA80]
+
+5227AE:
+lea eax,[ecx*4+0069DA80]
+
+5369EC:
+lea eax,[eax*4+0069DA80]
+
+439B28:
+mov eax,[0069DA84]
+
+439F49:
+mov eax,[0069DA84]
+
+536A5F:
+mov edx,[ecx*4+0069DA84]
+
+409271:
+mov edx,[eax*4+0069DA88]
+
+4097D4:
+sub ecx,[0069DA88]
+
+409A01:
+sub ecx,[eax*4+0069DA88]
+
+40A0CC:
+mov ecx,[edx*4+0069DA88]
+
+412A5B:
+sub ebp,[edx*4+0069DA88]
+
+412CBE:
+sub edi,[eax*4+0069DA88]
+
+530206:
+mov esi,[edx*4+0069DA88]
+
+4556C8:
+mov edx,0069DA8C
+
+455878:
+mov esi,0069DA8C
+
+40D776:
+mov eax,[0069DA94]
+
+40F056:
+mov edx,[ecx*4+0069DA98]
+
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"出怪调试"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+//eax代表僵尸出现的行数,从0开始数
+//mov eax,2
+//僵尸的测试，即强行修改出怪
+originalcode:
+push 21
+push edi
+call 00522580
+
+exit:
+jmp returnhere
+
+"popcapgame1.exe"+DE1B:
+jmp newmem
+nop 2
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"popcapgame1.exe"+DE1B:
+db 52 57 E8 5E 47 11 00
+//push edx
+//push edi
+//call 00522580
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"桶钢门-主要部分"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+//把桶钢门僵尸加在铁桶和铁门屁股后面(这很合理)
+cmp ecx,21
+jne originalcode
+//僵尸指针:edi
+//LoadPlainZombieReanim()
+call 524370
+pushad
+//ReanimShowPrefix("anim_bucket", RENDER_GROUP_NORMAL);
+push ebx
+push 668EBC
+mov eax,edi
+call 5331C0
+popad
+//ReanimShowPrefix("anim_hair", RENDER_GROUP_HIDDEN);
+pushad
+push esi
+push 668EC8
+mov eax,edi
+call 5331C0
+popad
+//mHelmType = HelmType::HELMTYPE_PAIL;
+mov [edi+C4],2
+//mShieldType = ShieldType::SHIELDTYPE_DOOR;
+mov [edi+D8],1
+//mHelmHealth = 1100;
+mov [edi+D0],44C
+//mShieldHealth = 1100;
+mov [edi+DC],44C
+pushad
+//AttachShield();
+mov eax,edi
+call 533000
+popad
+jmp 523E4E
+
+
+originalcode:
+cmp ecx,13
+jne 00522996
+
+exit:
+jmp returnhere
+
+52295E:
+jmp newmem
+returnhere:
+
+[DISABLE]
+dealloc(newmem)
+52295E:
+db 83 F9 13 75 33
+//cmp ecx,13
+//jne 00522996
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"铁门的共用代码"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+cmp esi,21
+jne originalcode
+
+//aReanim-&gt;AssignRenderGroupToPrefix("anim_bucket", RENDER_GROUP_NORMAL);
+push 00
+push 00668EBC
+push ebx
+call 00473A40
+//aReanim-&gt;AssignRenderGroupToPrefix("anim_hair", RENDER_GROUP_HIDDEN);
+push -01
+push 00668EC8
+push ebx
+call 00473A40
+//SetupDoorArms(aReanim, true);
+push 01
+call 00524040
+add esp,04
+//return;
+pop ebx
+ret
+
+originalcode:
+cmp esi,05
+jne 005241D0
+
+exit:
+jmp returnhere
+
+5241BC:
+jmp newmem
+returnhere:
+
+ 
+[DISABLE]
+dealloc(newmem)
+5241BC:
+db 83 FE 05 75 0F
+//cmp esi,05
+//jne 005241D0
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"铁门的共用代码"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+cmp edi,21
+je 46F9C2
+
+originalcode:
+cmp edi,06
+jne 0046F9D7
+
+exit:
+jmp returnhere
+
+46F9BD:
+jmp newmem
+returnhere:
+
+ 
+ 
+[DISABLE]
+dealloc(newmem)
+46F9BD:
+db 83 FF 06 75 15
+//cmp edi,06
+//jne 0046F9D7
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"拓展出怪"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+40D758:
+cmp eax,22
+[DISABLE]
+40D758:
+cmp eax,21
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Change of je 0052B14A</Description>
+      <AddressString>popcapgame1.exe+12B141</AddressString>
+      <Before>
+        <Byte>BD</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>74</Byte>
+        <Byte>07</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>FE</Byte>
+        <Byte>E8</Byte>
+        <Byte>A6</Byte>
+        <Byte>E4</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <DisassemblerComments>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D6F0</Address>
+      <Comment>易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D6F2</Address>
+      <Comment>mApp
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D6F8</Address>
+      <Comment>mApp-&gt;mGameModem != GameMode::GAMEMODE_ADVENTURE
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D701</Address>
+      <Comment>mLevel
+这个属性是从一开始的
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D707</Address>
+      <Comment>mLevel == 1
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D70A</Address>
+      <Comment>相比于源码,此处的if-else调换了位置
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D70C</Address>
+      <Comment>易变寄存器
+此后ebp将不用于堆栈寻址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D713</Address>
+      <Comment>这是一个for循环
+eax就是i
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D715</Address>
+      <Comment>又是易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D718</Address>
+      <Comment>经常出现这样的废话代码
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D720</Address>
+      <Comment>循环体开始
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D727</Address>
+      <Comment>imul esi,eax,7
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D729</Address>
+      <Comment>aZombieType != ZombieType::ZOMBIE_YETI
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D72C</Address>
+      <Comment>获取僵尸定义
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D733</Address>
+      <Comment>
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D735</Address>
+      <Comment>mApp-&gt;mPlayerInfo
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D73B</Address>
+      <Comment>mPlayerInfo
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D73F</Address>
+      <Comment>mApp-&gt;mPlayerInfo-&gt;mFinishedAdventure
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D742</Address>
+      <Comment>mPlayerInfo-&gt;mFinishedAdventure &gt; 0
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D744</Address>
+      <Comment>40D750是分支体
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D749</Address>
+      <Comment>mPlayerInfo-&gt;mFinishedAdventure &gt;= 2
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D74B</Address>
+      <Comment>mPlayerInfo-&gt;mLevel &gt;= aZombieDef.mStartingLevel
+编译器很智能,直接判断出mStartingLevel=0x28
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D750</Address>
+      <Comment>aZombieDef.mStartingLevel==mLevel
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D755</Address>
+      <Comment>aZombieType = (ZombieType)((int)aZombieType + 1)
+/*aZombieType++*/
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D758</Address>
+      <Comment>aZombieType &lt; ZombieType::NUM_ZOMBIE_TYPES;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D75B</Address>
+      <Comment>重新判断下一轮循环
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D75D</Address>
+      <Comment>return ZombieType::ZOMBIE_INVALID;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D766</Address>
+      <Comment>return ZombieType::ZOMBIE_INVALID;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+DE1B</Address>
+      <Comment>21
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66827</Address>
+      <Comment>虚函数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66878</Address>
+      <Comment>edi = int theGridY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6687B</Address>
+      <Comment>eax = Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6687E</Address>
+      <Comment>int theGridX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6687F</Address>
+      <Comment>Board::AddACrater(edi = int theGridY, int theGridX, eax = Board* this)
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6F9BD</Address>
+      <Comment>if (theZombieType == ZombieType::ZOMBIE_DOOR)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6F9D7</Address>
+      <Comment>else if (theZombieType == ZombieType::ZOMBIE_FLAG)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122580</Address>
+      <Comment>标准的函数指令,不再赘述
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122589</Address>
+      <Comment>易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12258B</Address>
+      <Comment>eax是僵尸需要出现的行数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12258D</Address>
+      <Comment>[ebp+4]是返回地址
+获取theFromWave
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122590</Address>
+      <Comment>如何快速判断一次push是函数调用还是保存易变寄存器?
+如果这个寄存器没有任何的上文信息,那就一定是保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122591</Address>
+      <Comment>获取僵尸指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122594</Address>
+      <Comment>mFromWave = theFromWave;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122597</Address>
+      <Comment>eax = int range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12259C</Address>
+      <Comment>mRow = theRow;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12259F</Address>
+      <Comment>Rand(ZOMBIE_START_RANDOM_OFFSET)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225A4</Address>
+      <Comment>780 + Rand(ZOMBIE_START_RANDOM_OFFSET)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225B1</Address>
+      <Comment>int theRow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225B2</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225B4</Address>
+      <Comment>mPosX = 780 + Rand(ZOMBIE_START_RANDOM_OFFSET);
+因为是浮点数,所以必须经过浮点寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225B7</Address>
+      <Comment>GetPosYBasedOnRow(theRow);
+由于返回浮点数,故返回值会被放到st(0)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225BC</Address>
+      <Comment>获取应当被设置的僵尸类型
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225BF</Address>
+      <Comment>mPosY = GetPosYBasedOnRow(theRow);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225C4</Address>
+      <Comment>theVariant
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225C7</Address>
+      <Comment>很多时候,如果高级语言代码里面有一堆连续的右值相同的赋值语句,就会使用一个寄存器进行统一的中转
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225C9</Address>
+      <Comment>mVelX = 0.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225D1</Address>
+      <Comment>mVelZ = 0.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225D7</Address>
+      <Comment>mWidth = 120;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225DA</Address>
+      <Comment>mHeight = 120;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225DD</Address>
+      <Comment>mov eax,0x65
+eax = int range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225E0</Address>
+      <Comment>mFrame = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225E3</Address>
+      <Comment>mPrevFrame = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225E6</Address>
+      <Comment>mZombieType = theType;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225E9</Address>
+      <Comment>mVariant = theVariant;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225EC</Address>
+      <Comment>mIsEating = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225EF</Address>
+      <Comment>mJustGotShotCounter = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225F2</Address>
+      <Comment>mShieldJustGotShotCounter = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225F5</Address>
+      <Comment>mShieldRecoilCounter = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225F8</Address>
+      <Comment>mChilledCounter = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1225FE</Address>
+      <Comment>mIceTrapCounter = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122604</Address>
+      <Comment>mButteredCounter = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12260A</Address>
+      <Comment>mMindControlled = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122610</Address>
+      <Comment>mBlowingAway = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122616</Address>
+      <Comment>mHasHead = true;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12261D</Address>
+      <Comment>mHasArm = true;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122624</Address>
+      <Comment>mHasObject = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12262A</Address>
+      <Comment>mInPool = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122630</Address>
+      <Comment>mOnHighGround = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122636</Address>
+      <Comment>mHelmType = HelmType::HELMTYPE_NONE;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12263C</Address>
+      <Comment>mShieldType = ShieldType::SHIELDTYPE_NONE;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122642</Address>
+      <Comment>mYuckyFace = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122648</Address>
+      <Comment>mYuckyFaceCounter = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12264E</Address>
+      <Comment>mAnimCounter = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122651</Address>
+      <Comment>RandRangeFloat函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12265B</Address>
+      <Comment>mGroanCounter = RandRangeInt(300, 400);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122663</Address>
+      <Comment>mAnimTicksPerFrame = 12;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122666</Address>
+      <Comment>mAnimFrames = 12;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12266E</Address>
+      <Comment>mZombieRect = Rect(36, 0, 42, 115);
+由于该属性是Rect而非Rect*类型,接下来几条指令也是在处理该属性
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12268A</Address>
+      <Comment>mZombieAttackRect = Rect(50, 0, 20, 115);
+原理同上
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122693</Address>
+      <Comment>mov ecx,115
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226A7</Address>
+      <Comment>mZombieAge = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226AA</Address>
+      <Comment>mTargetCol = -1;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226B0</Address>
+      <Comment>mZombiePhase = ZombiePhase::PHASE_ZOMBIE_NORMAL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226B3</Address>
+      <Comment>mZombieHeight = ZombieHeight::HEIGHT_ZOMBIE_NORMAL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226B6</Address>
+      <Comment>mPhaseCounter = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226B9</Address>
+      <Comment>mHitUmbrella = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226BF</Address>
+      <Comment>mDroppedLoot = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226C2</Address>
+      <Comment>mRelatedZombieID = ZombieID::ZOMBIEID_NULL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226C8</Address>
+      <Comment>在隔了很长一段时间之后,再次设置判定矩形
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226CE</Address>
+      <Comment>攻击矩形
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226D4</Address>
+      <Comment>mPlayingSong = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226DA</Address>
+      <Comment>mZombieFade = -1;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226DF</Address>
+      <Comment>mFlatTires = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226E2</Address>
+      <Comment>mScaleZombie = 1.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226E8</Address>
+      <Comment>mUseLadderCol = -1;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226EB</Address>
+      <Comment>mShieldHealth = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226F1</Address>
+      <Comment>mHelmHealth = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226F7</Address>
+      <Comment>mAltitude = 0.0f;
+为什么这里会变成0.0呢?
+因为5226E2执行了一次浮点寄存器出栈,栈顶变成了0.0
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1226FD</Address>
+      <Comment>mFlyingHealth = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122703</Address>
+      <Comment>mOriginalAnimRate = 0.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122709</Address>
+      <Comment>mAttachmentID = AttachmentID::ATTACHMENTID_NULL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12270F</Address>
+      <Comment>mSummonCounter = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122715</Address>
+      <Comment>mBossStompCounter = -1;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12271B</Address>
+      <Comment>mBossBungeeCounter = -1;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122721</Address>
+      <Comment>mBossHeadCounter = -1;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122727</Address>
+      <Comment>mBodyReanimID = ReanimationID::REANIMATIONID_NULL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12272D</Address>
+      <Comment>mTargetPlantID = PlantID::PLANTID_NULL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122733</Address>
+      <Comment>mBossMode = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122739</Address>
+      <Comment>mBossFireBallReanimID = ReanimationID::REANIMATIONID_NULL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12273F</Address>
+      <Comment>mSpecialHeadReanimID = ReanimationID::REANIMATIONID_NULL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122745</Address>
+      <Comment>mTargetRow = -1;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12274B</Address>
+      <Comment>mFireballRow = -1;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122751</Address>
+      <Comment>mIsFireBall = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122757</Address>
+      <Comment>mMoweredReanimID = ReanimationID::REANIMATIONID_NULL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12275D</Address>
+      <Comment>mLastPortalX = -1;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122763</Address>
+      <Comment>for (int i = 0; i &lt; MAX_ZOMBIE_FOLLOWERS; i++)
+{
+    mFollowerZombieID[i] = ZombieID::ZOMBIEID_NULL;
+}
+编译器是很聪明的,以下几条指令都是for循环的展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12277B</Address>
+      <Comment>mBoard
+edx = Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12277E</Address>
+      <Comment>if (mBoard)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122785</Address>
+      <Comment>int theWaveNumber
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122786</Address>
+      <Comment>mBoard-&gt;IsFlagWave(mFromWave)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12278B</Address>
+      <Comment>if (...mBoard-&gt;IsFlagWave(mFromWave))
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12278F</Address>
+      <Comment>mPosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122798</Address>
+      <Comment>mPosX += 40.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12279B</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12279D</Address>
+      <Comment>PickRandomSpeed();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227A2</Address>
+      <Comment>僵尸类型
+GetZombieDefinition函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227AC</Address>
+      <Comment>实质:(i)mul ecx,eax,7
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227AE</Address>
+      <Comment>通过69DA80基址获取僵尸定义
+将僵尸定义的指针交给eax
+eax就是aZombieDef
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227B5</Address>
+      <Comment>mBodyHealth = 270;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227BF</Address>
+      <Comment>aZombieDef
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227C3</Address>
+      <Comment>aZombieDef.mReanimationType
+5227DA也要用
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227C6</Address>
+      <Comment>if (aZombieDef.mReanimationType != ReanimationType::REANIM_NONE)
+回顾一下ecx=-1
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227C8</Address>
+      <Comment>RenderLayer::RENDER_LAYER_ZOMBIE
+RenderLayer aRenderLayer = RenderLayer::RENDER_LAYER_ZOMBIE;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227D0</Address>
+      <Comment>int aRenderOffset = 4;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227DA</Address>
+      <Comment>ReanimationType theReanimationType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227DB</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227DD</Address>
+      <Comment>LoadReanim(aZombieDef.mReanimationType);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227E2</Address>
+      <Comment>僵尸类型
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227E5</Address>
+      <Comment>cmp ecx,0
+普僵
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1227E7</Address>
+      <Comment>接下来就是波澜壮阔的"根据僵尸类型分别初始化"了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12289B</Address>
+      <Comment>铁桶
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1228A4</Address>
+      <Comment>edi = Zombie* this
+LoadPlainZombieReanim();
+无需专门传参
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1228A9</Address>
+      <Comment>mApp
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1228AB</Address>
+      <Comment>mBodyReanimID
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1228B1</Address>
+      <Comment>又是ReanimationTryToGet函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1228CE</Address>
+      <Comment>数据校验
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1228D6</Address>
+      <Comment>int theRenderGroup
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1228D7</Address>
+      <Comment>/*%s*/
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1228DC</Address>
+      <Comment>Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1228DD</Address>
+      <Comment>aBodyReanim-&gt;AssignRenderGroupToPrefix(theTrackPrefix, theRenderGroup);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1228E2</Address>
+      <Comment>反复进行函数展开
+编译器真是有病
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12290F</Address>
+      <Comment>int theRenderGroup
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122910</Address>
+      <Comment>/*%s*/
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122915</Address>
+      <Comment>Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122916</Address>
+      <Comment>ReanimShowPrefix("anim_bucket", RENDER_GROUP_NORMAL);
+这是展开前的版本
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12291B</Address>
+      <Comment>mHelmType = HelmType::HELMTYPE_PAIL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122925</Address>
+      <Comment>mHelmHealth = 1100;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122939</Address>
+      <Comment>mShieldType = ShieldType::SHIELDTYPE_DOOR;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122943</Address>
+      <Comment>mShieldHealth = 1100;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12294D</Address>
+      <Comment>edi = Zombie* this
+LoadPlainZombieReanim();
+无需专门传参
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122952</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122954</Address>
+      <Comment>AttachShield();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12295E</Address>
+      <Comment>雪人
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122996</Address>
+      <Comment>扶梯
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122A07</Address>
+      <Comment>蹦极
+偷换ecx为eax
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122DB8</Address>
+      <Comment>白眼
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+122DC1</Address>
+      <Comment>红眼
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123BE7</Address>
+      <Comment>倭瓜僵尸
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123BEC</Address>
+      <Comment>int theRenderGroup
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123BED</Address>
+      <Comment>/*%s*/
+const char* theTrackPrefix
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123BF2</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123BF4</Address>
+      <Comment>ReanimShowPrefix("anim_hair", RENDER_GROUP_HIDDEN);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123BF9</Address>
+      <Comment>int theRenderGroup
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123BFA</Address>
+      <Comment>/*%s*/
+const char* theTrackPrefix
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123BFF</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C01</Address>
+      <Comment>ReanimShowPrefix("anim_head2", RENDER_GROUP_HIDDEN);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C06</Address>
+      <Comment>又是标准的ReanimationGet
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C24</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C26</Address>
+      <Comment>523CBC要考
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C2A</Address>
+      <Comment>IsOnBoard()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C2F</Address>
+      <Comment>if (IsOnBoard())
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C33</Address>
+      <Comment>/*%s*/
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C38</Address>
+      <Comment>ecx = Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C3A</Address>
+      <Comment>aBodyReanim-&gt;SetFramesForLayer("anim_walk2");
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C3F</Address>
+      <Comment>/*%s*/
+const char* theTrackName
+参数ebx = Reanimation* this无需专门传递
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C44</Address>
+      <Comment>aBodyReanim-&gt;GetTrackInstanceByName("anim_head1")
+函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C4B</Address>
+      <Comment>6A77BC是一个全局变量的地址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C51</Address>
+      <Comment>mov edi,eax*3
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C57</Address>
+      <Comment>推测sizeof(ReanimatorTrackInstance)=0x60
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C5A</Address>
+      <Comment>mTrackInstances
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C5D</Address>
+      <Comment>int theRenderOrder
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C5F</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C62</Address>
+      <Comment>aTrackInstance-&gt;mImageOverride = IMAGE_BLANK;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C65</Address>
+      <Comment>float theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C69</Address>
+      <Comment>eax = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C6B</Address>
+      <Comment>float theX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C6E</Address>
+      <Comment>/*ReanimationType::REANIM_SQUASH*/
+ebx = ReanimationType theReanimationType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C73</Address>
+      <Comment>mApp-&gt;AddReanimation(0.0f, 0.0f, 0, ReanimationType::REANIM_SQUASH);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C7E</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C7F</Address>
+      <Comment>float theAnimRate
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C84</Address>
+      <Comment>ReanimLoopType theLoopType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C85</Address>
+      <Comment>esi = Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C87</Address>
+      <Comment>/*%s*/
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C8C</Address>
+      <Comment>eax = int theBlendTime
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C8E</Address>
+      <Comment>aHeadReanim-&gt;PlayReanim("anim_idle", ReanimLoopType::REANIM_LOOP, 0, 15.0f);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C95</Address>
+      <Comment>单个动画对象大小是9C
+所以直接在动画对象基础上加9C就能获取ID
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C9B</Address>
+      <Comment>再次获取僵尸指针存储到edx
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123C9E</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CA1</Address>
+      <Comment>float theOffsetY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CA5</Address>
+      <Comment>edi = AttachmentID&amp; theAttachmentID
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CA8</Address>
+      <Comment>float theOffsetX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CAB</Address>
+      <Comment>mSpecialHeadReanimID = mApp-&gt;ReanimationGetID(aHeadReanim);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CB1</Address>
+      <Comment>esi = Reanimation* theReanimation无需专门设置
+AttachReanim(aTrackInstance-&gt;mAttachmentID, aHeadReanim, 0.0f, 0.0f)
+这是一个_cdecl,调用完之后栈处于esp偏小的位置
+注意到后面又要进行另一个函数的浮点数传参,所以在此_cdecl之后就没有专门恢复栈,也没有进行一次专门的浮点占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CBC</Address>
+      <Comment>aBodyReanim,见523C26
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CC0</Address>
+      <Comment>float theScaleY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CCA</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CCD</Address>
+      <Comment>float theScaleX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CD1</Address>
+      <Comment>aAttachEffect-&gt;mOffset
+esi = SexyMatrix3&amp; m
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CDA</Address>
+      <Comment>aBodyReanim-&gt;mFrameBasePose = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CDD</Address>
+      <Comment>float rad
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CE7</Address>
+      <Comment>float y
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CF1</Address>
+      <Comment>float x
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CF4</Address>
+      <Comment>TodScaleRotateTransformMatrix(aAttachEffect-&gt;mOffset, 55.0f, -15.0f, 0.2f, -0.75f, 0.75f);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CF9</Address>
+      <Comment>再次获取僵尸指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CFC</Address>
+      <Comment>_cdecl
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123CFF</Address>
+      <Comment>mZombiePhase = ZombiePhase::PHASE_SQUASH_PRE_LAUNCH;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D06</Address>
+      <Comment>mVariant = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D09</Address>
+      <Comment>将edi恢复为僵尸指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D10</Address>
+      <Comment>巨人处理逻辑
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D15</Address>
+      <Comment>mWidth = 180;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D18</Address>
+      <Comment>mHeight = 180;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D1B</Address>
+      <Comment>eax = int range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D20</Address>
+      <Comment>mBodyHealth = 3000;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D2A</Address>
+      <Comment>mAnimFrames = 24;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D31</Address>
+      <Comment>mAnimTicksPerFrame = 8;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D38</Address>
+      <Comment>Rand(10)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D3D</Address>
+      <Comment>WIDE_BOARD_WIDTH + 45 + Rand(10)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D42</Address>
+      <Comment>临时保存mPosX = WIDE_BOARD_WIDTH + 45 + Rand(10);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D4A</Address>
+      <Comment>mZombieRect = Rect(-17, -38, 125, 154);
+原理不再赘述
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D5F</Address>
+      <Comment>mPosX = WIDE_BOARD_WIDTH + 45 + Rand(10);
+同理,浮点数必须经过浮点寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D73</Address>
+      <Comment>mZombieAttackRect = Rect(-30, -38, 89, 154);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D8F</Address>
+      <Comment>mov eax,64
+eax = int range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123D9E</Address>
+      <Comment>mVariant = false;
+ebx好像从函数开始之后一直都是全0
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123DB0</Address>
+      <Comment>Rand(100)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123DB7</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123DB9</Address>
+      <Comment>IsOnBoard()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123DBE</Address>
+      <Comment>if (IsOnBoard())
+参考源码中if与else顺序被调换了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123DC2</Address>
+      <Comment>mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123DC5</Address>
+      <Comment>mBoard-&gt;mLevel == 50
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123DCE</Address>
+      <Comment>aPoleVarant = aPoleHit &lt; 10 ? 2 : aPoleHit &lt; 35 ? 1 : 0
+以下就是这一复杂逻辑的展开
+aPoleVariant保存至ecx
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123DE6</Address>
+      <Comment>aPoleVariant = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123DE8</Address>
+      <Comment>共用代码
+ReanimationGet
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E04</Address>
+      <Comment>esi=aBodyReanim
+此变量不会进入内存
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E06</Address>
+      <Comment>if (aPoleVariant == 2)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E10</Address>
+      <Comment>Image* theImage
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E1E</Address>
+      <Comment>Image* theImage
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E1F</Address>
+      <Comment>/*%s*/
+eax = const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E26</Address>
+      <Comment>ecx = Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E2B</Address>
+      <Comment>共用代码,判断究竟是红眼还是白眼
+mZombieType == ZombieType::ZOMBIE_REDEYE_GARGANTUAR
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E37</Address>
+      <Comment>Image* theImage
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E38</Address>
+      <Comment>/*%s*/
+eax = const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E3D</Address>
+      <Comment>ecx = Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E3F</Address>
+      <Comment>aBodyReanim-&gt;SetImageOverride("anim_head1", IMAGE_REANIM_ZOMBIE_GARGANTUAR_HEAD_REDEYE);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E44</Address>
+      <Comment>mBodyHealth = 6000;
+红眼和白眼的血量有区别
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E4E</Address>
+      <Comment>所有种类的僵尸的共用代码
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E51</Address>
+      <Comment>mFromWave == Zombie::ZOMBIE_WAVE_CUTSCENE
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E56</Address>
+      <Comment>mFromWave == Zombie::ZOMBIE_WAVE_UI
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E5B</Address>
+      <Comment>mApp
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E5D</Address>
+      <Comment>mApp-&gt;mGameMode
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E6C</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E6D</Address>
+      <Comment>float range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E70</Address>
+      <Comment>同样,由于后面又要浮点数传参,故没有平衡堆栈
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E75</Address>
+      <Comment>%s
+RandRangeFloat(8.0f, 10.0f)
+函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E7B</Address>
+      <Comment>aAnimRate
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E83</Address>
+      <Comment>float theAnimRate
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E86</Address>
+      <Comment>int theBlendTime
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E87</Address>
+      <Comment>ReanimLoopType theLoopType
+/*ReanimLoopType::REANIM_LOOP*/
+所有0都被ebx代替了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E88</Address>
+      <Comment>/*%s*/
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E8D</Address>
+      <Comment>PlayZombieReanim("anim_aquarium_swim", ReanimLoopType::REANIM_LOOP, 0, aAnimRate);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E97</Address>
+      <Comment>eax = int range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123E9A</Address>
+      <Comment>mZombieHeight = ZombieHeight::HEIGHT_ZOMBIQUARIUM;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EA1</Address>
+      <Comment>mZombiePhase = ZombiePhase::PHASE_ZOMBIQUARIUM_DRIFT;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EA8</Address>
+      <Comment>mPhaseCounter = 200;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EAB</Address>
+      <Comment>mBodyHealth = 200;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EB8</Address>
+      <Comment>mSummonCounter = RandRangeInt(200, 400);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EBE</Address>
+      <Comment>mApp
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EC0</Address>
+      <Comment>mApp-&gt;mBoard
+函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123ECC</Address>
+      <Comment>mApp-&gt;mGameMode
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123ED2</Address>
+      <Comment>mApp-&gt;mGameMode == GameMode::GAMEMODE_CHALLENGE_LITTLE_TROUBLE
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123ED7</Address>
+      <Comment>mApp-&gt;mGameMode == GameMode::GAMEMODE_ADVENTURE
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EE5</Address>
+      <Comment>mPlayerInfo-&gt;mLevel == 25
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EEB</Address>
+      <Comment>mFromWave
+IsOnBoard函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EEE</Address>
+      <Comment>mFromWave == Zombie::ZOMBIE_WAVE_CUTSCENE
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EF3</Address>
+      <Comment>mFromWave == Zombie::ZOMBIE_WAVE_UI
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EF8</Address>
+      <Comment>theFromWave == Zombie::ZOMBIE_WAVE_CUTSCENE
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123EFE</Address>
+      <Comment>mBodyHealth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F0B</Address>
+      <Comment>mScaleZombie = 0.5f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F11</Address>
+      <Comment>代码混淆
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F19</Address>
+      <Comment>mBodyHealth /= 4;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F1F</Address>
+      <Comment>mHelmHealth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F29</Address>
+      <Comment>代码混淆
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F2E</Address>
+      <Comment>mHelmHealth /= 4;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F34</Address>
+      <Comment>mShieldHealth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F43</Address>
+      <Comment>mShieldHealth /= 4;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F49</Address>
+      <Comment>mFlyingHealth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F58</Address>
+      <Comment>mFlyingHealth /= 4;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F5E</Address>
+      <Comment>esi = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F60</Address>
+      <Comment>UpdateAnimSpeed();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F65</Address>
+      <Comment>if (mVariant)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F6A</Address>
+      <Comment>mApp
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F6C</Address>
+      <Comment>mBodyReanimID
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F74</Address>
+      <Comment>mEffectSystem
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F7A</Address>
+      <Comment>mEffectSystem-&gt;mReanimationHolder
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F7F</Address>
+      <Comment>DataArrayTryToGet函数展开
+movzx实现按位与
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F82</Address>
+      <Comment>(theId &amp; DATA_ARRAY_INDEX_MASK) &gt;= mMaxSize
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F8D</Address>
+      <Comment>ReanimationTryToGet与ReanimationGet展开过程类似
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F8F</Address>
+      <Comment>这是数据检验的过程
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F97</Address>
+      <Comment>/*RENDER_GROUP_NORMAL*/
+int theRenderGroup
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F98</Address>
+      <Comment>/*%s*/
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F9D</Address>
+      <Comment>Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123F9E</Address>
+      <Comment>函数展开后:aBodyReanim-&gt;AssignRenderGroupToPrefix(theTrackPrefix, theRenderGroup);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FA3</Address>
+      <Comment>mBodyHealth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FA9</Address>
+      <Comment>mPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FAC</Address>
+      <Comment>mHelmHealth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FB2</Address>
+      <Comment>mShieldHealth;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FB8</Address>
+      <Comment>mBodyMaxHealth = mBodyHealth;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FBE</Address>
+      <Comment>mFlyingHealth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FC4</Address>
+      <Comment>mHelmMaxHealth = mHelmHealth;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FCA</Address>
+      <Comment>mShieldMaxHealth = mShieldHealth;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FD0</Address>
+      <Comment>mFlyingMaxHealth = mFlyingHealth;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FD6</Address>
+      <Comment>mDead = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FDC</Address>
+      <Comment>强转
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FE1</Address>
+      <Comment>mPosY
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FE4</Address>
+      <Comment>mX = (int)mPosX;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FEC</Address>
+      <Comment>mRow
+MakeRenderOrder日常展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FEF</Address>
+      <Comment>theRow * (int)RenderLayer::RENDER_LAYER_ROW_OFFSET
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+123FF9</Address>
+      <Comment>mY = (int)mPosY;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124000</Address>
+      <Comment>if (mZombieHeight == ZombieHeight::HEIGHT_ZOMBIQUARIUM)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124004</Address>
+      <Comment>mRenderOrder = Board::MakeRenderOrder(aRenderLayer, mRow, aRenderOffset);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124009</Address>
+      <Comment>mBodyMaxHealth = 300;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124013</Address>
+      <Comment>IsOnBoard函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124016</Address>
+      <Comment>mFromWave == Zombie::ZOMBIE_WAVE_CUTSCENE
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12401B</Address>
+      <Comment>mFromWave == Zombie::ZOMBIE_WAVE_UI
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124020</Address>
+      <Comment>ecx = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124022</Address>
+      <Comment>PlayZombieAppearSound();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124027</Address>
+      <Comment>esi = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124029</Address>
+      <Comment>StartZombieSound();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12402E</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124030</Address>
+      <Comment>UpdateReanim();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124035</Address>
+      <Comment>恢复易变寄存器,返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1240B3</Address>
+      <Comment>获取Reanimation* aReanim参数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12418A</Address>
+      <Comment>铁桶
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12418F</Address>
+      <Comment>int theRenderGroup
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124191</Address>
+      <Comment>/*%s*/
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+124196</Address>
+      <Comment>Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12419C</Address>
+      <Comment>int theRenderGroup
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12419E</Address>
+      <Comment>/*%s*/
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1241A3</Address>
+      <Comment>Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1241B0</Address>
+      <Comment>bool theShow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1241B2</Address>
+      <Comment>ebx = Reanimation* aReanim无需专门传参
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275D2</Address>
+      <Comment>if (!mHasHead)
+{
+    return;
+}
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275D8</Address>
+      <Comment>//WP源码:
+if (mPhaseCounter &lt;= 0)//判断的是小于等于
+//本处判断的就是等于
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275DC</Address>
+      <Comment>527745可以被认为是函数的返回点
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275E2</Address>
+      <Comment>执行到了这里说明辣椒僵尸即将爆炸
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127631</Address>
+      <Comment>不同于WP版，可能这才是播放音效的函数地址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12B145</Address>
+      <Comment>UpdateZombiePool
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12B263</Address>
+      <Comment>这是if-selse-if,不是switch
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>00C30016</Address>
+      <Comment>ReanimShowPrefix
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>00C30035</Address>
+      <Comment>Reanimation aBodyReanim = mApp.ReanimationGet(mBodyReanimID);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>00C3005D</Address>
+      <Comment>GetTrackInstanceByName
+</Comment>
+    </DisassemblerComment>
+  </DisassemblerComments>
+</CheatTable>

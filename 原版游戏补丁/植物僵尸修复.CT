@@ -1,0 +1,6521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"僵尸豌豆避开胆小菇"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+cmp eax,0D
+jne originalcode
+cmp [esi+3C],15
+je 46CAD0
+
+originalcode:
+cmp eax,08
+je 0046CAD0
+
+exit:
+jmp returnhere
+
+46CAF9:
+jmp newmem
+returnhere:
+
+[DISABLE]
+dealloc(newmem)
+46CAF9:
+db 83 F8 08 74 D2
+//cmp eax,08
+//je 0046CAD0
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"BurnRow"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(BurnRow,256)
+registersymbol(BurnRow)
+
+BurnRow:
+sub esp,08
+push ebx
+push esi
+//push 00
+nop 2
+mov eax,edi
+mov eax,7F
+mov edx,[edi+04]
+lea esi,[esp+0C]
+mov ebx,eax
+mov [esp+0C],00000000
+call 0041C8F0
+test al,al
+//46653D-664B0
+je BurnRow+8D
+//4664E0-664B0
+jmp BurnRow+30
+lea ebx,[ebx+00000000]
+nop 4
+mov esi,[esp+0C]
+mov eax,[esi+1C]
+sub eax,[edi+1C]
+cmp dword ptr [esi+24],19
+//4664F4-664B0
+je BurnRow+44
+test eax,eax
+//466520-664B0
+jne BurnRow+7D
+push ebx
+call 00531A80
+test al,al
+//46652D-664B0
+je BurnRow+7D
+cmp dword ptr [esi+000000B4],00
+//46650E-664B0
+jle BurnRow+5E
+mov eax,esi
+call 00532350
+cmp dword ptr [esi+000000AC],00
+//466526-664B0
+jle BurnRow+76
+mov [esi+000000AC],00000000
+call 0052F050
+mov ecx,esi
+call 00532B70
+mov edx,[edi+04]
+lea esi,[esp+0C]
+call 0041C8F0
+test al,al
+//4664E0-664B0
+jne BurnRow+30
+mov edx,[edi+04]
+lea esi,[esp+0C]
+mov [esp+0C],00000000
+call 0041CAD0
+test al,al
+//466587-664B0
+je BurnRow+D7
+mov ebx,00000003
+lea ebx,[ebx+00000000]
+nop 4
+mov esi,[esp+0C]
+mov eax,[esi+14]
+cmp eax,[esp+14]
+//466577-664B0
+jne BurnRow+C7
+cmp [esi+08],ebx
+//466577-664B0
+jne BurnRow+C7
+call 0044D000
+mov edx,[edi+04]
+lea esi,[esp+0C]
+call 0041CAD0
+test al,al
+//466560-664B0
+jne BurnRow+B0
+mov edx,[edi+04]
+call 0041D390
+test eax,eax
+//4665A4-664B0
+je BurnRow+F4
+mov ecx,[esp+14]
+cmp ecx,[eax+00000148]
+//4665A4-664B0
+jne BurnRow+F4
+call 00535630
+pop esi
+pop ebx
+add esp,08
+ret 0004
+ 
+ 
+[DISABLE]
+dealloc(BurnRow)
+unregistersymbol(BurnRow)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"FindCollisionMindControlledTarget"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//原来的函数大小是0x13A
+//Projectile::FindCollisionMindControlledTarget(Projectile* this)
+alloc(FindCollisionMindControlledTarget,512)
+registersymbol(FindCollisionMindControlledTarget)
+
+FindCollisionMindControlledTarget:
+sub esp,30
+push ebx
+push ebp
+push esi
+push edi
+mov edi,[esp+44]
+call 0046CC30
+test al,al
+je FindCollisionMindControlledTarget+20
+xor eax,eax
+pop edi
+pop esi
+pop ebp
+pop ebx
+add esp,30
+ret 0004
+lea ecx,[esp+30]
+mov esi,edi
+call 0046EBC0
+mov edx,[edi+04]
+xor eax,eax
+lea esi,[esp+14]
+mov [esp+18],eax
+mov [esp+1C],eax
+mov [esp+14],eax
+call 0041C8F0
+test al,al
+je FindCollisionMindControlledTarget+12C
+mov ebp,[esp+30]
+mov esi,[esp+14]
+mov eax,[esi+1C]
+sub eax,[edi+1C]
+mov ebx,00000019
+cmp [esi+24],ebx
+je FindCollisionMindControlledTarget+6D
+test eax,eax
+jne FindCollisionMindControlledTarget+118
+mov eax,[edi+74]
+//push eax(1个字节)
+//call 00531A80(5个字节)
+//应当判断是否被魅惑的问题
+//"打不到则跳转"
+mov al,byte ptr [esi+B8]
+//刚刚的mov指令刚好占6个字节,无需补nop
+//修复浮空鞭尸Bug
+//jmp占5个字节,因为是远距离转移
+jmp fix
+nop 3
+back:
+cmp dword ptr [esi+28],3B
+jne FindCollisionMindControlledTarget+98
+fld dword ptr [00679680]
+fcomp dword ptr [edi+38]
+fnstsw ax
+test ah,01
+je FindCollisionMindControlledTarget+118
+cmp dword ptr [edi+5C],07
+jne FindCollisionMindControlledTarget+B5
+cmp [edi+60],ebx
+jnl FindCollisionMindControlledTarget+B5
+fldz
+fcomp dword ptr [edi+3C]
+fnstsw ax
+test ah,41
+jp FindCollisionMindControlledTarget+B5
+cmp dword ptr [esi+24],11
+je FindCollisionMindControlledTarget+118
+lea edi,[esp+20]
+mov ebx,esi
+call 005320B0
+mov ecx,[esp+20]
+cmp ebp,ecx
+mov edx,[esp+38]
+jnl FindCollisionMindControlledTarget+D7
+lea eax,[edx+ebp]
+mov edx,[esp+28]
+add edx,ecx
+jmp FindCollisionMindControlledTarget+E1
+mov eax,[esp+28]
+add eax,ecx
+mov ecx,ebp
+add edx,ebp
+cmp eax,ecx
+jg FindCollisionMindControlledTarget+E9
+sub eax,ecx
+jmp FindCollisionMindControlledTarget+F5
+cmp eax,edx
+jg FindCollisionMindControlledTarget+F1
+sub eax,ecx
+jmp FindCollisionMindControlledTarget+F5
+sub edx,ecx
+mov eax,edx
+test eax,eax
+jl FindCollisionMindControlledTarget+114
+cmp dword ptr [esp+18],00
+je FindCollisionMindControlledTarget+109
+mov eax,[esp+1C]
+cmp [esi+08],eax
+jnl FindCollisionMindControlledTarget+114
+mov ecx,[esi+08]
+mov [esp+18],esi
+mov [esp+1C],ecx
+mov edi,[esp+44]
+mov edx,[edi+04]
+lea esi,[esp+14]
+call 0041C8F0
+test al,al
+jne FindCollisionMindControlledTarget+51
+mov eax,[esp+18]
+pop edi
+pop esi
+pop ebp
+pop ebx
+add esp,30
+ret 0004
+int 3
+int 3
+int 3
+int 3
+int 3
+int 3
+sub esp,20
+push ebx
+push ebp
+mov ebp,[esp+2C]
+mov edx,[ebp+58]
+cmp edx,05
+push esi
+push edi
+jne FindCollisionMindControlledTarget+15D
+cmp dword ptr [ebp+60],4B
+jnl FindCollisionMindControlledTarget+307
+fld dword ptr [ebp+30]
+fcomp qword ptr [00679738]
+fnstsw ax
+test ah,41
+je FindCollisionMindControlledTarget+307
+fild dword ptr [ebp+10]
+fadd dword ptr [ebp+30]
+fcomp qword ptr [00679298]
+fnstsw ax
+test ah,05
+jnp FindCollisionMindControlledTarget+307
+cmp edx,09
+jne FindCollisionMindControlledTarget+22C
+mov ecx,[ebp+00000088]
+mov edx,[ebp+04]
+call 0041C7F0
+mov ebx,eax
+test ebx,ebx
+je FindCollisionMindControlledTarget+30E
+mov eax,[ebp+74]
+push eax
+mov esi,ebx
+call 00531A80
+test al,al
+je FindCollisionMindControlledTarget+30E
+lea ecx,[esp+20]
+mov esi,ebp
+call 0046EBC0
+lea edi,[esp+10]
+call 005320B0
+mov ecx,edi
+lea edi,[esp+20]
+call 0041C820
+test eax,eax
+jl FindCollisionMindControlledTarget+30E
+fld dword ptr [ebp+34]
+fild dword ptr [esp+14]
+fcompp
+fnstsw ax
+test ah,05
+jp FindCollisionMindControlledTarget+30E
+mov ecx,[esp+14]
+fld dword ptr [ebp+34]
+mov edx,[esp+1C]
+add edx,ecx
+mov [esp+34],edx
+fild dword ptr [esp+34]
+fcompp
+fnstsw ax
+test ah,41
+jne FindCollisionMindControlledTarget+30E
+mov eax,ebx
+mov ecx,ebp
+call 0046E000
+pop edi
+pop esi
+pop ebp
+pop ebx
+add esp,20
+ret 0004
+mov ecx,[ebp+5C]
+cmp ecx,07
+jne FindCollisionMindControlledTarget+25C
+fld dword ptr [00679FE4]
+fcomp dword ptr [ebp+34]
+fnstsw ax
+test ah,05
+jnp FindCollisionMindControlledTarget+307
+fld dword ptr [0067959C]
+fcomp dword ptr [ebp+34]
+fnstsw ax
+test ah,41
+je FindCollisionMindControlledTarget+307
+test ecx,ecx
+je FindCollisionMindControlledTarget+265
+cmp ecx,07
+jne FindCollisionMindControlledTarget+27C
+fld dword ptr [ebp+4C]
+fsub dword ptr [ebp+34]
+fcomp qword ptr [00679B48]
+fnstsw ax
+test ah,41
+je FindCollisionMindControlledTarget+30E
+cmp edx,08
+je FindCollisionMindControlledTarget+30E
+cmp ecx,0D
+push ebp
+jne FindCollisionMindControlledTarget+318
+call 0046CAA0
+test eax,eax
+je FindCollisionMindControlledTarget+30E
+mov ecx,[ebp+5C]
+lea ecx,[ecx+ecx*2]
+mov edx,[ecx*4+0069F1C8]
+mov ecx,[eax+000000B8]
+sub [eax+40],edx
+cmp ecx,19
+jg FindCollisionMindControlledTarget+2B8
+mov ecx,00000019
+mov [eax+000000B8],ecx
+mov eax,[ebp+00]
+mov esi,00000001
+call 00453630
+fld dword ptr [ebp+34]
+fadd qword ptr [00679348]
+mov ecx,[ebp+20]
+mov edx,[ebp+00]
+sub esp,08
+fstp dword ptr [esp+3C]
+add ecx,esi
+fld dword ptr [esp+3C]
+lea eax,[esi+24]
+fstp dword ptr [esp+04]
+fld dword ptr [ebp+30]
+fsub qword ptr [00679330]
+fstp dword ptr [esp+3C]
+fld dword ptr [esp+3C]
+fstp dword ptr [esp]
+call 00453C80
+mov eax,ebp
+call 0046EB20
+pop edi
+pop esi
+pop ebp
+pop ebx
+add esp,20
+ret 0004
+call 0046CD40
+mov edx,eax
+test edx,edx
+je FindCollisionMindControlledTarget+30E
+cmp byte ptr [edx+000000BE],00
+je FindCollisionMindControlledTarget+337
+mov ecx,ebp
+call 0046D090
+test al,al
+jne FindCollisionMindControlledTarget+30E
+mov eax,edx
+mov ecx,ebp
+call 0046E000
+pop edi
+pop esi
+pop ebp
+pop ebx
+add esp,20
+ret 0004
+
+fix:
+test al,al
+je FindCollisionMindControlledTarget+118
+//调用Zombie::IsDeadOrDying(eax = Zombie* this)判断是否是濒死的被魅惑僵尸
+mov eax,esi
+call 534700
+test al,al
+//如果处于濒死则跳转
+//效果很好!不仅不会浮空鞭尸,而且也不会鞭尸了!
+jne FindCollisionMindControlledTarget+118
+jmp back
+
+[DISABLE]
+dealloc(FindCollisionMindControlledTarget)
+unregistersymbol(FindCollisionMindControlledTarget)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"僵尸豌豆攻击被魅惑的僵尸"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+
+originalcode:
+cmp ecx,0D
+push ebp
+jne 0046D058
+//利用刚才的push ebp传参调用函数以判断有没有碰到被魅惑的僵尸
+call FindCollisionMindControlledTarget
+test eax,eax
+je __46CFCF
+//DoImpact(zombie)
+//Projectile::DoImpact(eax = Zombie* theZombie = 0, ecx = Projectile* this)
+//eax已经是僵尸指针了
+//mov eax,eax
+mov ecx,ebp
+call 46E000
+//原路返回(同时利用Die()函数调用)
+jmp 46D047
+
+exit:
+jmp returnhere
+
+__46CFCF:
+push ebp
+jmp 46CFCF
+
+46CFC5:
+jmp newmem
+nop 5
+returnhere:
+
+[DISABLE]
+dealloc(newmem)
+46CFC5:
+db 83 F9 0D 55 0F 85 89 00 00 00
+//cmp ecx,0D
+//push ebp
+//jne 0046D058
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"僵尸豌豆攻击被魅惑的僵尸-铁门扶梯处理"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+//if判断条件如果成立,就应该前往0046D290
+//先加一个判断,判断子弹是不是僵尸豌豆(之后如果我新增了僵尸冰豌豆或者其他子弹,这里也需要修改)
+cmp [edi+5C],0D
+jne originalcode
+//if不成立的处理
+jmp 0046D295
+
+originalcode:
+cmp eax,06
+je 0046D290
+
+exit:
+jmp returnhere
+
+46D27A:
+jmp newmem
+returnhere:
+
+[DISABLE]
+dealloc(newmem)
+46D27A:
+db 83 F8 06 74 11
+//cmp eax,06
+//je 0046D290
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"机枪僵尸"身在曹营心在汉"修复01"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+//以下代码照抄自expansion版
+push edx
+//对于堆栈平衡的精准把控
+mov edx,[esp+58]
+cmp byte ptr [edx+000000B8],00
+pop edx
+je originalcode
+mov [esi+5C],0
+jmp exit
+
+originalcode:
+mov [esi+5C],0000000D
+
+exit:
+jmp returnhere
+
+527988:
+jmp newmem
+nop 2
+returnhere:
+
+[DISABLE]
+dealloc(newmem)
+527988:
+db C7 46 5C 0D 00 00 00
+//mov [esi+5C],0000000D
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"机枪僵尸"身在曹营心在汉"修复02"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+alloc(hundred,4)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+push edx
+//仍然仿照(不是照抄)expansion版
+mov edx,[esp+58]
+//现在edx就是僵尸指针
+cmp byte ptr [edx+B8],0
+pop edx
+je originalcode
+mov [esi+58],0//似乎没什么必要..但是保险
+mov [esi+74],1
+//位置设置
+fld [esi+30]
+fadd [hundred]
+fstp [esi+30]
+jmp exit
+
+originalcode:
+mov [esi+58],00000006
+
+exit:
+jmp returnhere
+
+527A91:
+jmp newmem
+nop 2
+returnhere:
+
+hundred:
+dd (float)100.0
+
+ 
+ 
+[DISABLE]
+dealloc(newmem)
+527A91:
+db C7 46 58 06 00 00 00
+//mov [esi+58],00000006
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"机枪僵尸"身在曹营心在汉"修复03"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+alloc(yOffset,8)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+//修复机枪僵尸嘴瓢Bug
+//出现原因:机枪的纵坐标具有随机性,万一偏上就打不到未被魅惑的僵尸了
+cmp byte ptr [edi+B8],0
+je originalcode
+fadd qword ptr [yOffset]
+jmp exit
+
+
+originalcode:
+fadd qword ptr [006793B8]
+
+exit:
+jmp returnhere
+
+527914:
+jmp newmem
+nop
+returnhere:
+
+yOffset:
+//经过测试13.0是一个比较好的数值
+//几乎可以保证不漏僵尸("几乎"是指在我的实验过程中没有出现问题)
+dq (double)13.0
+
+[DISABLE]
+dealloc(newmem)
+527914:
+db DC 05 B8 93 67 00
+//fadd qword ptr [006793B8]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"豌豆僵尸"身在曹营心在汉"修复01"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+//僵尸指针是edi
+cmp byte ptr [edi+B8],0
+je NormalLaunch
+MindControlledLaunch:
+push 0
+jmp originalcode
+NormalLaunch:
+push 0D
+
+
+originalcode:
+push edx
+fsub qword ptr [006792D0]
+
+exit:
+jmp returnhere
+
+527567:
+jmp newmem
+nop 4
+returnhere:
+
+
+ 
+[DISABLE]
+dealloc(newmem)
+527567:
+db 6A 0D 52 DC 25 D0 92 67 00
+//push 0D
+//push edx
+//fsub qword ptr [006792D0]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"豌豆僵尸"身在曹营心在汉"修复02"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+alloc(hundred,4)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+//根据僵尸是否被魅惑,合理设置子弹运动方式
+cmp byte ptr [edi+B8],0
+je originalcode
+mov [eax+58],0
+//还有就是mDamageRangeFlags
+mov [eax+74],1
+//除此以外还应该进行横坐标设置
+fld [eax+30]
+fadd [hundred]
+fstp [eax+30]
+jmp exit
+
+originalcode:
+mov [eax+58],00000006
+
+exit:
+jmp returnhere
+
+5275A8:
+jmp newmem
+nop 2
+returnhere:
+
+hundred:
+dd (float)100.0
+
+[DISABLE]
+dealloc(newmem)
+5275A8:
+db C7 40 58 06 00 00 00
+//mov [eax+58],00000006
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"辣椒僵尸"身在曹营心在汉"修复"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+
+originalcode:
+mov [eax+00005548],FFFFFFFC
+
+cmp byte ptr [edi+B8],0
+je exit
+//下面处理僵尸被魅惑的情况
+push [edi+1C]
+call BurnRow
+jmp 0052773E
+
+exit:
+jmp returnhere
+
+5276B1:
+jmp newmem
+nop 5
+returnhere:
+
+[DISABLE]
+dealloc(newmem)
+5276B1:
+db C7 80 48 55 00 00 FC FF FF FF
+//mov [eax+00005548],FFFFFFFC
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"IsLowPlant"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(IsLowPlant,2048)
+registersymbol(IsLowPlant)
+
+IsLowPlant:
+//需要专门封装一个函数来判断植物是否是低矮植物,或者是是否处于低矮状态
+//此函数无法照抄任何现成代码
+//Plant::IsLowPlant(Plant* this)
+//受影响的寄存器:edi,eax
+//获取植物指针,即形参
+mov edi,[esp+4]
+mov eax,[edi+24]
+cmp eax,8//小喷菇
+je return_true
+cmp eax,9//阳光菇
+je return_true
+cmp eax,4//地雷
+je return_true
+cmp eax,15//地刺
+je return_true
+cmp eax,2E//钢地刺
+je return_true
+cmp eax,10//莲叶
+je return_true
+//额外判断是否是处于缩头状态的胆小菇
+cmp [edi+3C],15
+je return_true
+jmp return_false
+
+return_true:
+mov al,1
+ret 4
+return_false:
+//按照代码惯例执行
+xor al,al
+ret 4
+
+
+[DISABLE]
+dealloc(IsLowPlant)
+unregistersymbol(IsLowPlant)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"ReanimationGet"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(ReanimationGet,32)
+registersymbol(ReanimationGet)
+//新建ReanimationGet函数
+//LawnApp::ReanimationGet(eax = LawnApp* this, edi = ReanimationID theReanimationID)
+//结果保存至esi
+//影响的寄存器:ecx,edx
+
+ReanimationGet:
+mov ecx,[eax+00000820]
+mov edx,[ecx+08]
+and edi,0000FFFF
+lea esi,[edi+edi*4]
+shl esi,05
+add esi,[edx]
+ret
+
+
+[DISABLE]
+dealloc(ReanimationGet)
+unregistersymbol(ReanimationGet)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"辣椒僵尸爆炸专用动画加音效"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+//是否到了播放爆炸动画的时间?
+cmp dword ptr [edi+68],64
+//让代码更具有可读性
+jne originalcode
+jmp Explode
+
+Explode:
+//edi是僵尸this指针
+//让辣椒头播放爆炸膨胀动画
+//获取动画
+//高级语言:Reanimation* aHeadReanim = mApp-&gt;ReanimationGet(mSpecialHeadReanimID);
+pushad
+//先要设法获取到辣椒头动画对象
+mov eax,[edi]
+//改变了edi的指向
+mov edi,[edi+144]
+call ReanimationGet
+
+
+//高级语言:aHeadReanim-&gt;PlayReanim("anim_shooting", ReanimLoopType::REANIM_PLAY_ONCE_AND_HOLD, 20, 38.0f);
+//浮点数传参仍然需要占位
+push ecx
+fld dword ptr [6797F0]//38.0
+fstp [esp]
+push 3
+mov eax,14
+push 668C64//"anim_explode"字符串常量存放位置
+call 473BF0
+popad
+
+//爆炸的前摇音效也要有
+Foley:
+pushad
+mov esi,39
+mov eax,[edi]
+call 453630
+popad
+
+
+//回去
+//jmp exit
+//这就是bug出现的原因:不应该跳转到exit
+//这会导致辣椒僵尸提前爆炸
+
+originalcode:
+cmp dword ptr [edi+68],00
+jne 00527745
+
+exit:
+jmp returnhere
+
+
+
+5275D8:
+jmp newmem
+nop 5
+returnhere:
+
+[DISABLE]
+dealloc(newmem)
+5275D8:
+db 83 7F 68 00 0F 85 63 01 00 00
+//cmp dword ptr [edi+68],00
+//jne 00527745
+
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"低矮植物与咖啡豆连带责任问题"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+
+originalcode:
+test eax,eax
+jne NormalPlantExists
+//获取底盘并直接返回
+mov eax,[esp+10]
+
+exit:
+jmp returnhere
+
+NormalPlantExists:
+//常规植物肯定是存在的,那么它是低矮植物吗?
+pushad
+push eax
+call IsLowPlant
+test al,al
+popad
+//注意现在eax又被恢复为了常规植物指针
+je 46CC24//46CC24代表着将现在的eax直接返回回去
+//现在常规植物一定存在,并且是低矮植物
+//判断:有飞行植物吗?[esp+18]
+pushad
+//堆栈偏移
+mov eax,[esp+38]
+test eax,eax
+popad
+//现在eax再次恢复为常规植物指针
+je 46CC24
+//存在相应的飞行植物,那就直接返回飞行植物
+mov eax,[esp+18]
+//不再jmp exit了
+jmp 46CC24
+
+
+46CBB7:
+jmp newmem
+nop 3
+returnhere:
+
+ 
+ 
+[DISABLE]
+dealloc(newmem)
+46CBB7:
+db 85 C0 75 69 8B 44 24 10
+//test eax,eax
+//jne 0046CC24
+//mov eax,[esp+10]
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <DisassemblerComments>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D4F3</Address>
+      <Comment>单纯为了保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D4F4</Address>
+      <Comment>int theGridY
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+D4F5</Address>
+      <Comment>int theGridX
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E2E2</Address>
+      <Comment>辣椒
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E2E5</Address>
+      <Comment>现在先只分析辣椒的专用代码
+因为这个函数实在是太大了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E2E7</Address>
+      <Comment>根据经验,ebx是植物指针
+eax = Plant* this
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E2E9</Address>
+      <Comment>IsInPlay()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E2EE</Address>
+      <Comment>if (IsInPlay())
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E2F0</Address>
+      <Comment>辣椒如果在非战斗关卡,就应该安安静静的呆着
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E2F6</Address>
+      <Comment>("anim_explode")
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E2FB</Address>
+      <Comment>ecx = Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E2FD</Address>
+      <Comment>mDoSpecialCountdown = 100;
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E304</Address>
+      <Comment>aBodyReanim-&gt;SetFramesForLayer("anim_explode");
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E309</Address>
+      <Comment>aBodyReanim-&gt;mLoopType = ReanimLoopType::REANIM_PLAY_ONCE_AND_HOLD;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E310</Address>
+      <Comment>eax = LawnApp* this
+很好!函数没有被展开!
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E312</Address>
+      <Comment>esi = FoleyType theFoleyType
+/*FoleyType::FOLEY_REVERSE_EXPLOSION*/
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+5E317</Address>
+      <Comment>mApp-&gt;PlayFoley(FoleyType::FOLEY_REVERSE_EXPLOSION);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664B0</Address>
+      <Comment>植物指针是edi
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664B3</Address>
+      <Comment>保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664B4</Address>
+      <Comment>保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664B9</Address>
+      <Comment>int aDamageRangeFlags = GetDamageRangeFlags(PlantWeapon::WEAPON_PRIMARY);
+关注点:如果是火爆辣椒,那么会返回127
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664BE</Address>
+      <Comment>edx被赋值为mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664C1</Address>
+      <Comment>又要遍历僵尸了,用法同理
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664C5</Address>
+      <Comment>如果是火爆辣椒,这里会把ebx赋值为127
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664CF</Address>
+      <Comment>mBoard-&gt;IterateZombies(aZombie)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664D4</Address>
+      <Comment>while (mBoard-&gt;IterateZombies(aZombie))
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664D6</Address>
+      <Comment>若遍历失败则跳转
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664DA</Address>
+      <Comment>又是弱智代码?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664E0</Address>
+      <Comment>esi被赋值为僵尸指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664E4</Address>
+      <Comment>取得僵尸行数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664E7</Address>
+      <Comment>僵尸行数-=植物行数
+这不会实质上改变僵尸行数,刚刚的说法只是为了便于理解而已
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664EA</Address>
+      <Comment>僵尸的类型是僵王吗?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664EE</Address>
+      <Comment>如果是僵王则跳走
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664F0</Address>
+      <Comment>在刚刚的操作之后,eax会被设置为僵尸与植物行数的差值
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664F2</Address>
+      <Comment>如果僵尸和植物不同行则跳走
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664F4</Address>
+      <Comment>如果是僵王则跳转到这里
+因为僵王无需判断攻击范围问题
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664F5</Address>
+      <Comment>aZombie-&gt;EffectedByDamage(aDamageRangeFlags)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664FA</Address>
+      <Comment>僵尸在可攻击范围内吗?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664FC</Address>
+      <Comment>如果不在,则跳走,判断下一个僵尸
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+664FE</Address>
+      <Comment>处理僵尸被火烧解冻的问题
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66505</Address>
+      <Comment>if (mIceTrapCounter &gt; 0)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66507</Address>
+      <Comment>进行了函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66509</Address>
+      <Comment>mZombie-&gt;RemoveIceTrap()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6650E</Address>
+      <Comment>if (mChilledCounter &gt; 0)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66521</Address>
+      <Comment>UpdateAnimSpeed()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66528</Address>
+      <Comment>ApplyBurn()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66534</Address>
+      <Comment>再次遍历僵尸,即决定是否进行下一轮循环
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6653D</Address>
+      <Comment>edx = mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6654C</Address>
+      <Comment>mBoard-&gt;IterateGridItems(aGridItem)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66551</Address>
+      <Comment>while (mBoard-&gt;IterateGridItems(aGridItem))
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66553</Address>
+      <Comment>现在遍历的是场地物品,不再是僵尸
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66555</Address>
+      <Comment>3对应梯子
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6655A</Address>
+      <Comment>?弱智代码
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66560</Address>
+      <Comment>esi被赋值为场地物品,接下来同理
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66564</Address>
+      <Comment>eax被赋值为场地物品的判定高度,即行数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6656D</Address>
+      <Comment>物品是梯子吗?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66572</Address>
+      <Comment>aGridItem-&gt;GridItemDie();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66577</Address>
+      <Comment>再次遍历场地物品,判断是否进入下一轮循环
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6658A</Address>
+      <Comment>Zombie* aBossZombie = mBoard-&gt;GetBossZombie();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66591</Address>
+      <Comment>如果没有获取到僵王信息,就跳转到返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66593</Address>
+      <Comment>[esp+14]对应于参数theRow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66597</Address>
+      <Comment>比较当前行和僵王冰火球行数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6659F</Address>
+      <Comment>aBossZombie-&gt;BossDestroyIceballInRow(theRow);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+665B0</Address>
+      <Comment>void Plant::BlowAwayFliers()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+665FB</Address>
+      <Comment>获取僵尸状态
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666A0</Address>
+      <Comment>Plant::DoSpecial(Plant* this)分析
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666A1</Address>
+      <Comment>没有发现保存易变寄存器
+这是一个教科书级别的函数代码
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666A3</Address>
+      <Comment>栈对齐
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666A9</Address>
+      <Comment>出现了:易变寄存器
+但是这里的易变寄存器保存操作并不是连续的
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666AA</Address>
+      <Comment>堆栈寻址,获取植物指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666AD</Address>
+      <Comment>植物受伤判定宽度基准mWidth
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666B0</Address>
+      <Comment>mX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666B3</Address>
+      <Comment>???
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666B4</Address>
+      <Comment>???
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666B6</Address>
+      <Comment>mWidth/2
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666B8</Address>
+      <Comment>int aPosX = mX + mWidth / 2;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666BA</Address>
+      <Comment>mHeight
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666BD</Address>
+      <Comment>???
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666BE</Address>
+      <Comment>???
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666C0</Address>
+      <Comment>mY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666C3</Address>
+      <Comment>又一个易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666C4</Address>
+      <Comment>mHeight/2
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666C6</Address>
+      <Comment>mY+mHeight/2
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666C8</Address>
+      <Comment>易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666C9</Address>
+      <Comment>执行完毕后,esi=aPosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666CB</Address>
+      <Comment>执行完毕后,edi=aPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666CD</Address>
+      <Comment>PlantWeapon thePlantWeapon
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666CF</Address>
+      <Comment>eax = Plant* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666D1</Address>
+      <Comment>aPosX局部变量保存
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666D5</Address>
+      <Comment>aPosY局部变量保存
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666D9</Address>
+      <Comment>GetDamageRangeFlags(PlantWeapon::WEAPON_PRIMARY)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666DE</Address>
+      <Comment>int aDamageRangeFlags = GetDamageRangeFlags(PlantWeapon::WEAPON_PRIMARY);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666E2</Address>
+      <Comment>植物类型
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666E5</Address>
+      <Comment>三叶草
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666EA</Address>
+      <Comment>PlantState::STATE_DOINGSPECIAL
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666EF</Address>
+      <Comment>if (mState != PlantState::STATE_DOINGSPECIAL)
+[+3C]为获取植物状态
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666F8</Address>
+      <Comment>Plant* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666F9</Address>
+      <Comment>mState = PlantState::STATE_DOINGSPECIAL;
+此条指令夹在函数传参与调用之间
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+666FC</Address>
+      <Comment>BlowAwayFliers();
+参考源码是:BlowAwayFliers(mX, mRow);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66701</Address>
+      <Comment>恢复易变寄存器,返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6670A</Address>
+      <Comment>樱桃
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66713</Address>
+      <Comment>基址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66717</Address>
+      <Comment>if (!mMuteSoundsForCutscene)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66720</Address>
+      <Comment>(69FAD0)
+又是函数展开,详情见UpdateZombieGatlingHead的分析
+因为形参与局部变量位置不同,函数展开后代码有所区别
+但是大体上一致
+mApp-&gt;PlayFoley(FoleyType::FOLEY_THROW);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66747</Address>
+      <Comment>浮点传参占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66748</Address>
+      <Comment>float range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6674B</Address>
+      <Comment>Sexy::Rand(aFoleyParams-&gt;mPitchRange)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66754</Address>
+      <Comment>调用者平衡堆栈
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6675B</Address>
+      <Comment>浮点传参占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66760</Address>
+      <Comment>float thePitch
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66763</Address>
+      <Comment>eax = FoleyType theFoleyType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66768</Address>
+      <Comment>函数展开结束
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6676D</Address>
+      <Comment>有两次PlayFiley函数调用,故又一次展开了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667A1</Address>
+      <Comment>浮点传参占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667A2</Address>
+      <Comment>float range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667A5</Address>
+      <Comment>Sexy::Rand(aFoleyParams-&gt;mPitchRange)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667AE</Address>
+      <Comment>_cdecl
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667B5</Address>
+      <Comment>浮点传参占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667B6</Address>
+      <Comment>ecx = TodFoley* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667BA</Address>
+      <Comment>float thePitch
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667BD</Address>
+      <Comment>eax = FoleyType theFoleyType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667C2</Address>
+      <Comment>PlayFoleyPitch(theFoleyType, aPitch)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667C9</Address>
+      <Comment>这条指令等于什么事也不做
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667CB</Address>
+      <Comment>获取局部变量aDamageRangeFlags保存至edx
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667CF</Address>
+      <Comment>获取植物所在行保存至eax
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667D2</Address>
+      <Comment>mBoard保存至ecx
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667D5</Address>
+      <Comment>int theDamageRangeFlags
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667D6</Address>
+      <Comment>bool theBurn
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667D8</Address>
+      <Comment>int theRowRange
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667DA</Address>
+      <Comment>int theRadius
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667DC</Address>
+      <Comment>int theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667DD</Address>
+      <Comment>int theX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667DE</Address>
+      <Comment>int theRow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667DF</Address>
+      <Comment>Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667E0</Address>
+      <Comment>该函数的参数类型与参考源码有出入
+参考源码:mBoard-&gt;KillAllZombiesInRadius(mRow, aPosX, aPosY, 115, 1, true, aDamageRangeFlags);
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667E5</Address>
+      <Comment>函数展开行为,参考源码:
+mApp-&gt;AddTodParticle(aPosX, aPosY, (int)RenderLayer::RENDER_LAYER_TOP, ParticleEffect::PARTICLE_POWIE);
+[esp+0C]是aPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667E9</Address>
+      <Comment>mApp
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667EB</Address>
+      <Comment>mEffectSystem
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667F1</Address>
+      <Comment>mParticleHolder
+esi = TodParticleHolder* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667F3</Address>
+      <Comment>ParticleEffect theParticleEffect
+/*ParticleEffect::PARTICLE_POWIE*/
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667F5</Address>
+      <Comment>int theRenderOrder
+/*(int)RenderLayer::RENDER_LAYER_TOP*/
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667FA</Address>
+      <Comment>浮点数传参占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+667FD</Address>
+      <Comment>float theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66801</Address>
+      <Comment>aPosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66805</Address>
+      <Comment>float theX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66808</Address>
+      <Comment>mEffectSystem-&gt;mParticleHolder-&gt;AllocParticleSystem(theX, theY, theRenderOrder, theEffect);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6680D</Address>
+      <Comment>跳转到返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66812</Address>
+      <Comment>毁灭菇
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66817</Address>
+      <Comment>mApp
+ecx = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66819</Address>
+      <Comment>mApp-&gt;mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6681B</Address>
+      <Comment>(100)
+SOUND_DOOMSHROOM
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66826</Address>
+      <Comment>int theSoundNum
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66827</Address>
+      <Comment>虚函数PlaySample
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66829</Address>
+      <Comment>aDamageRangeFlags
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6682D</Address>
+      <Comment>植物行数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66830</Address>
+      <Comment>mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66833</Address>
+      <Comment>int theDamageRangeFlags
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66834</Address>
+      <Comment>bool theBurn
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66836</Address>
+      <Comment>int theRowRange
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66838</Address>
+      <Comment>int theRadius
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6683D</Address>
+      <Comment>int theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6683E</Address>
+      <Comment>int theX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6683F</Address>
+      <Comment>int theRow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66840</Address>
+      <Comment>Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66841</Address>
+      <Comment>参考源码:mBoard-&gt;KillAllZombiesInRadius(mRow, aPosX, aPosY, 250, 3, true, aDamageRangeFlags);
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66846</Address>
+      <Comment>edi = Plant* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66848</Address>
+      <Comment>KillAllPlantsNearDoom();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6684D</Address>
+      <Comment>aPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66859</Address>
+      <Comment>esi = TodParticleHolder* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6685B</Address>
+      <Comment>ParticleEffect theParticleEffect
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6685D</Address>
+      <Comment>int theRenderOrder
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66862</Address>
+      <Comment>浮点数传参的占位可以通过push ecx这种语句来进行
+也可以像这样手动对esp做减法
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66865</Address>
+      <Comment>float theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66869</Address>
+      <Comment>aPosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6686D</Address>
+      <Comment>float theX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66870</Address>
+      <Comment>mApp-&gt;AddTodParticle(aPosX, aPosY, (int)RenderLayer::RENDER_LAYER_TOP, ParticleEffect::PARTICLE_DOOM);
+但是进行了函数展开:展开为:
+mEffectSystem-&gt;mParticleHolder-&gt;AllocParticleSystem(theX, theY, theRenderOrder, theEffect);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66875</Address>
+      <Comment>植物所在列数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66878</Address>
+      <Comment>edi = int theGridY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6687B</Address>
+      <Comment>eax = Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6687E</Address>
+      <Comment>int theGridX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6687F</Address>
+      <Comment>mBoard-&gt;AddACrater(mPlantCol, mRow)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66884</Address>
+      <Comment>设置弹坑冷却时间
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66890</Address>
+      <Comment>辣椒
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66899</Address>
+      <Comment>mApp
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6689B</Address>
+      <Comment>又来了:PlayFoley函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6689D</Address>
+      <Comment>mMuteSoundsForCutscene
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+668C9</Address>
+      <Comment>浮点传参占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+668D2</Address>
+      <Comment>float range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+668D6</Address>
+      <Comment>_cdecl
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+668DD</Address>
+      <Comment>浮点传参占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+668DE</Address>
+      <Comment>eax = FoleyType theFoleyType
+FoleyType::FOLEY_JALAPENO_IGNITE
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+668E3</Address>
+      <Comment>float thePitch
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+668E6</Address>
+      <Comment>ecx = TodFoley* this
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6691D</Address>
+      <Comment>浮点传参占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6691E</Address>
+      <Comment>float range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66931</Address>
+      <Comment>浮点传参占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66932</Address>
+      <Comment>eax = FoleyType theFoleyType
+FoleyType::FOLEY_JUICY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66937</Address>
+      <Comment>float thePitch
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6693A</Address>
+      <Comment>ecx = TodFoley* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66943</Address>
+      <Comment>代码混淆
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66945</Address>
+      <Comment>获取植物所在行
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66948</Address>
+      <Comment>ebx = Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6694B</Address>
+      <Comment>int theRow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6694C</Address>
+      <Comment>mBoard-&gt;DoFwoosh(mRow);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66951</Address>
+      <Comment>精准堆栈寻址,获取植物指针
+edi = Plant* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66954</Address>
+      <Comment>mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66957</Address>
+      <Comment>mBoard-&gt;mShakeCounter=12;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66961</Address>
+      <Comment>mBoard-&gt;mShakeAmountX=3
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6696B</Address>
+      <Comment>mBoard-&gt;mShakeAmountY=-4
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66975</Address>
+      <Comment>获取植物所在行mRow
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66978</Address>
+      <Comment>int theRow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66979</Address>
+      <Comment>BurnRow(mRow);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6697E</Address>
+      <Comment>植物所在行
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66981</Address>
+      <Comment>mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66984</Address>
+      <Comment>Plant* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66985</Address>
+      <Comment>mBoard-&gt;mIceTimer[mRow] = 20;
+二次偏移变址寻址
+(该行冰道消失倒计时设为20)
+(为什么不是0?因为辣椒爆炸需要一个过程)
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66990</Address>
+      <Comment>Die();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6699E</Address>
+      <Comment>保护伞
+虽然不是一次性植物,但是也调用这个函数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669A3</Address>
+      <Comment>植物状态
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669A6</Address>
+      <Comment>叶子保护伞触发
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669AF</Address>
+      <Comment>叶子保护伞弹
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669BE</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669BF</Address>
+      <Comment>float theAnimRate
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669C2</Address>
+      <Comment>ReanimLoopType theLoopType
+/*ReanimLoopType::REANIM_PLAY_ONCE_AND_HOLD*/
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669C4</Address>
+      <Comment>("anim_block")
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669C9</Address>
+      <Comment>ecx = int theBlendTime
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669CB</Address>
+      <Comment>eax = Plant* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669CD</Address>
+      <Comment>mState = PlantState::STATE_UMBRELLA_TRIGGERED;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669D4</Address>
+      <Comment>mStateCountdown = 5;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669DB</Address>
+      <Comment>PlayBodyReanim("anim_block", ReanimLoopType::REANIM_PLAY_ONCE_AND_HOLD, 0, 22.0f);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669E9</Address>
+      <Comment>寒冰菇
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669EE</Address>
+      <Comment>编译器的代码混淆手段
+mov esi,12/*FoleyType::FOLEY_FROZEN*/
+esi = FoleyType theFoleyType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669F1</Address>
+      <Comment>eax = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669F3</Address>
+      <Comment>mApp-&gt;PlayFoley(FoleyType::FOLEY_FROZEN);
+很奇怪,这次居然没有函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669F8</Address>
+      <Comment>edi = Plant* this
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669FA</Address>
+      <Comment>IceZombies();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+669FF</Address>
+      <Comment>aPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A03</Address>
+      <Comment>mApp
+edx = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A05</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A08</Address>
+      <Comment>float theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A0C</Address>
+      <Comment>eax = ParticleEffect theEffect
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A0F</Address>
+      <Comment>aPosX
+由于刚刚esp发生了变动,所以寻址也需要改变
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A13</Address>
+      <Comment>ecx = int theRenderOrder
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A18</Address>
+      <Comment>float theX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A1B</Address>
+      <Comment>mApp-&gt;AddTodParticle(aPosX, aPosY, (int)RenderLayer::RENDER_LAYER_TOP, ParticleEffect::PARTICLE_ICE_TRAP);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A20</Address>
+      <Comment>Plant* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A21</Address>
+      <Comment>Die();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A2F</Address>
+      <Comment>地雷
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A38</Address>
+      <Comment>(49)
+SOUND_POTATO_MINE
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A3D</Address>
+      <Comment>到目前为止,ecx仍然是mX + mWidth / 2
+mX + mWidth / 2 - 20
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A40</Address>
+      <Comment>ecx = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A44</Address>
+      <Comment>获取虚函数指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A4A</Address>
+      <Comment>int theSoundNum
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A4B</Address>
+      <Comment>重制aPosX
+aPosX = mX + mWidth / 2 - 20;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A4F</Address>
+      <Comment>aPosY = mY + mHeight / 2;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A53</Address>
+      <Comment>又是多态
+4560C0
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A55</Address>
+      <Comment>aDamageRangeFlags
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A59</Address>
+      <Comment>所在行数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A5C</Address>
+      <Comment>mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A5F</Address>
+      <Comment>int theDamageRangeFlags
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A60</Address>
+      <Comment>bool theBurn
+在原版中,土豆雷虽然会爆炸,但是不属于灰烬植物
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A62</Address>
+      <Comment>int theRowRange
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A64</Address>
+      <Comment>int theRadius
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A66</Address>
+      <Comment>int theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A67</Address>
+      <Comment>int theX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A68</Address>
+      <Comment>int theRow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A69</Address>
+      <Comment>Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A6A</Address>
+      <Comment>参考源码:
+再次强调,参考源码与实际的参数类型不同!:
+mBoard-&gt;KillAllZombiesInRadius(mRow, aPosX, aPosY, 60, 0, false, aDamageRangeFlags);
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A6F</Address>
+      <Comment>Board::MakeRenderOrder函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A73</Address>
+      <Comment>mRow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A76</Address>
+      <Comment>/*mApp*/
+edx = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A78</Address>
+      <Comment>imul ecx,RenderLayer::RENDER_LAYER_ROW_OFFSET
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A7E</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A81</Address>
+      <Comment>("er-|1-1-2")
+CE自动生成的注释有误
+应该是RenderLayer::RENDER_LAYER_PARTICLE
+ecx = int theRenderOrder
+现在ecx已经是Board::MakeRenderLayer的返回值了
+同时也是LawnApp::AddTodParticle的实参
+对应于参考源码的aRenderPosition
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A87</Address>
+      <Comment>eax = ParticleEffect theEffect
+/*ParticleEffect::PARTICLE_POTATO_MINE*/
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A8C</Address>
+      <Comment>/*aPosY*/
+float theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A90</Address>
+      <Comment>aPosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A94</Address>
+      <Comment>(20.00)
+aPosX+20.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66A9A</Address>
+      <Comment>画蛇添足的临时保存
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AA2</Address>
+      <Comment>float theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AA5</Address>
+      <Comment>mApp-&gt;AddTodParticle(aPosX + 20.0f, aPosY, aRenderPosition, ParticleEffect::PARTICLE_POTATO_MINE);
+此次居然又没有进行函数展开,大大降低了分析难度
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AAA</Address>
+      <Comment>获取mBoard
+这是好几个一次性植物的公用代码段
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AAD</Address>
+      <Comment>mBoard-&gt;mShakeCounter=12;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AB7</Address>
+      <Comment>mBoard-&gt;mShakeAmountX=3
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AC1</Address>
+      <Comment>Plant* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AC2</Address>
+      <Comment>mBoard-&gt;mShakeAmountY=-4
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66ACC</Address>
+      <Comment>任何完成使命的植物都应该去世
+Die();
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66ADA</Address>
+      <Comment>咖啡豆
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66ADD</Address>
+      <Comment>如果仍然不相等,那就只能直接返回了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AE3</Address>
+      <Comment>植物所在列数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AE6</Address>
+      <Comment>GetTopPlantAt又被函数展开了
+展开前:GetTopPlantAt(mPlantCol, mRow, PlantPriority::TOPPLANT_ONLY_NORMAL_POSITION)
+判断植物横向是否越界
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AE9</Address>
+      <Comment>植物所在行数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AEC</Address>
+      <Comment>mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AF1</Address>
+      <Comment>判断植物纵向是否越界
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AF6</Address>
+      <Comment>mBoard-&gt;mApp
+ecx = LawnApp* this
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66AFC</Address>
+      <Comment>mApp-&gt;IsWallnutBowlingLevel()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B01</Address>
+      <Comment>if (mApp-&gt;IsWallnutBowlingLevel()...)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B05</Address>
+      <Comment>eax = CutScene* this
+/*mBoard-&gt;mCutScene*/
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B0B</Address>
+      <Comment>mCutScene-&gt;IsInShovelTutorial()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B12</Address>
+      <Comment>if (...!mCutScene-&gt;IsInShovelTutorial())
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B14</Address>
+      <Comment>int theGridY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B15</Address>
+      <Comment>int theGridX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B16</Address>
+      <Comment>ebx = _Out_ PlantsOnLawn* thePlantOnLawn
+还是要注意堆栈寻址问题
+在正常堆栈下,对应[esp+20]
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B1A</Address>
+      <Comment>GetPlantsOnLawn(theGridX, theGridY, &amp;aPlantOnLawn);
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B1F</Address>
+      <Comment>常规植物指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B23</Address>
+      <Comment>if (aPlant...)
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B27</Address>
+      <Comment>if (...aPlant-&gt;mIsAsleep)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B30</Address>
+      <Comment>aPlant-&gt;mWakeUpCounter = 100;
+植物醒来需要100缓冲时间
+也就是说咖啡豆生效需要1秒时间
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B43</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B44</Address>
+      <Comment>float theAnimRate
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B47</Address>
+      <Comment>ReanimLoopType theLoopType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B49</Address>
+      <Comment>("anim_crumble")
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B4E</Address>
+      <Comment>ecx = int theBlendTime
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B53</Address>
+      <Comment>eax = Plant* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B55</Address>
+      <Comment>mState = PlantState::STATE_DOINGSPECIAL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B5C</Address>
+      <Comment>参考源码:(注意参数类型有出入)
+PlayBodyReanim("anim_crumble", ReanimLoopType::REANIM_PLAY_ONCE_AND_HOLD, 20, 22.0f);
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B61</Address>
+      <Comment>eax = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B63</Address>
+      <Comment>esi = FoleyType theFoleyType
+/*FoleyType::FOLEY_COFFEE*/
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B68</Address>
+      <Comment>mApp-&gt;PlayFoley(FoleyType::FOLEY_COFFEE);
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+66B6D</Address>
+      <Comment>例行返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+67A0A</Address>
+      <Comment>判断植物类型是不是咖啡豆
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+67A28</Address>
+      <Comment>"Board::GetGriditemAt
+(edi = int theGridY, ebx = int theGridX, GridItemType theGridItemType, edx = Board* this)"
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+67A2D</Address>
+      <Comment>和参考源代码有些不一样，注意一下
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAA0</Address>
+      <Comment>重新分析该函数代码
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAA3</Address>
+      <Comment>易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAA4</Address>
+      <Comment>易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAA5</Address>
+      <Comment>通过精准的堆栈平衡把控,获取子弹指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAA9</Address>
+      <Comment>易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAAA</Address>
+      <Comment>易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAAB</Address>
+      <Comment>返回地址已经在[esp+20]了
+esp+10对应于某个局部变量
+ecx = _Out_ Rect&amp;&amp; aRect
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAAF</Address>
+      <Comment>esi = Projectile* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAB1</Address>
+      <Comment>参考源码:Rect aProjectileRect = GetProjectileRect();
+实际上的函数表中是通过引用来返回aProjectileRect的,明白意思就行
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAB6</Address>
+      <Comment>子弹矩形-&gt;mWidth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CABA</Address>
+      <Comment>获取子弹矩形-&gt;mX
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CABE</Address>
+      <Comment>局部变量使用了形参的地址空间
+在这后子弹指针就要通过ebp来访问了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAC8</Address>
+      <Comment>代码混淆
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAD0</Address>
+      <Comment>edx = Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAD3</Address>
+      <Comment>esi = Plant*&amp; thePlant
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAD7</Address>
+      <Comment>while (mBoard-&gt;IteratePlants(aPlant))
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CADC</Address>
+      <Comment>判断是否找到了植物
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CADE</Address>
+      <Comment>如果没找到就跳出循环
+实际效果等同于直接返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAE4</Address>
+      <Comment>循环体开始
+获取子弹所在行数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAE7</Address>
+      <Comment>aPlant
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAEB</Address>
+      <Comment>获取植物所在行数
+并与子弹所在行数作比较
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAEE</Address>
+      <Comment>46CAD0代表着进行下一轮循环
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAF0</Address>
+      <Comment>判断子弹类型是否是僵尸豌豆
+因为除了僵尸豌豆外,还有cxk的篮球
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAF6</Address>
+      <Comment>接下来这一堆cmp就是比较植物类型是否是应当躲避僵尸豌豆了
+获取植物类型
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAF9</Address>
+      <Comment>小喷菇
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CAFE</Address>
+      <Comment>阳光菇
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB03</Address>
+      <Comment>地雷
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB08</Address>
+      <Comment>地刺
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB0D</Address>
+      <Comment>钢地刺
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB12</Address>
+      <Comment>莲叶
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB17</Address>
+      <Comment>打中植物的处理逻辑
+eax = _Out_ Rect&amp;&amp; aInjuryRect
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB1B</Address>
+      <Comment>ecx = Plant* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB1D</Address>
+      <Comment>aPlant-&gt;GetPlantRect();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB22</Address>
+      <Comment>GetRectOverlap函数被展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB26</Address>
+      <Comment>现在,edi是子弹矩形,ecx是植物矩形
+注意在刚刚的两个获取矩形的函数调用时,返回的矩形都保存在栈区而非堆区
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB28</Address>
+      <Comment>if (rect1.mX &lt; rect2.mX)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB2A</Address>
+      <Comment>植物矩形-&gt;mWidth
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB2E</Address>
+      <Comment>eax = rect1.mX + rect1.mWidth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB31</Address>
+      <Comment>rect2.mX+rect2.mWidth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB39</Address>
+      <Comment>eax = rect1.mX + rect1.mWidth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB3B</Address>
+      <Comment>ecx = 子弹矩形-&gt;mX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB3D</Address>
+      <Comment>子弹矩形-&gt;mX+子弹矩形-&gt;mWidth
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB40</Address>
+      <Comment>if (rect1.mX+rect1.mWidth &lt;= rect2.mX)
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB44</Address>
+      <Comment>rect1.mX+rect1.mWidth-rect2.mX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB4C</Address>
+      <Comment>“rmin - xmax”
+很复杂的判断流程
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB54</Address>
+      <Comment>if (GetRectOverlap(aProjectileRect, aPlantRect) &gt; 8)
+注意GetRectOverLap被展开了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB57</Address>
+      <Comment>判断下一个植物
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB5D</Address>
+      <Comment>再次判断是否是僵尸豌豆
+if (mProjectileType == ProjectileType::PROJECTILE_ZOMBIE_PEA)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB61</Address>
+      <Comment>植物所在行数
+GetTopPlantAt函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB64</Address>
+      <Comment>mBoard
+edx = Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB67</Address>
+      <Comment>植物所在列数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB6C</Address>
+      <Comment>从这里开始时僵尸豌豆的获取植物目标逻辑
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB78</Address>
+      <Comment>如果植物越界则跳转到返回
+return NULL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB7E</Address>
+      <Comment>ecx = LawnApp* this
+获取基址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB84</Address>
+      <Comment>mApp-&gt;IsWallnutBowlingLevel()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB89</Address>
+      <Comment>if (mApp-&gt;IsWallnutBowlingLevel()...)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB8D</Address>
+      <Comment>eax = CutScene* this/*mBoard-&gt;mCutScene*/
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB93</Address>
+      <Comment>mCutScene-&gt;IsInShovelTutorial()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CB9A</Address>
+      <Comment>if (...!mCutScene-&gt;IsInShovelTutorial())
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBA0</Address>
+      <Comment>int theGridY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBA1</Address>
+      <Comment>int theGridX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBA2</Address>
+      <Comment>ebx = _Out_ PlantsOnLawn* thePlantOnLawn
+PlantsOnLawn aPlantOnLawn;
+对应于堆栈平衡状态下的[esp+10]
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBA6</Address>
+      <Comment>另一个参数见46CB64
+GetPlantsOnLawn(theGridX, theGridY, &amp;aPlantOnLawn);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBAB</Address>
+      <Comment>为什么前面调用传入指针esp+18
+现在又变成了esp+14呢?
+因为在传入esp+18时已经进行了两次push
+获取esp+14时堆栈被平回来了
+总之就是这两个时间点的esp不一样
+
+获取南瓜植物指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBB1</Address>
+      <Comment>如果南瓜指针不为零,即存在南瓜则跳转(到返回)
+由于返回值通过eax传递,所以等价于返回南瓜植物的指针
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBB3</Address>
+      <Comment>常规植物指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBB9</Address>
+      <Comment>判断常规植物是否存在,若存在则直接返回该常规植物指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBBB</Address>
+      <Comment>返回底盘植物(花盆/莲叶)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBC9</Address>
+      <Comment>cxk投出的篮球子弹的处理逻辑
+比较植物所在列数有没有越界(原理同上)
+if (mApp-&gt;IsWallnutBowlingLevel() &amp;&amp; !mCutScene-&gt;IsInShovelTutorial())
+	return nullptr;
+逻辑和前面几乎一模一样
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBCC</Address>
+      <Comment>如果越界则跳转到返回空指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBD3</Address>
+      <Comment>回忆一下edx是mBoard
+ecx = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBE2</Address>
+      <Comment>eax = CutScene* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBF1</Address>
+      <Comment>int theGridY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBF2</Address>
+      <Comment>int theGridX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBF3</Address>
+      <Comment>ebx = _Out_ PlantsOnLawn* thePlantOnLawn
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBF7</Address>
+      <Comment>GetPlantsOnLawn(theGridX, theGridY, &amp;aPlantOnLawn);
+大量重复代码
+这就是典型的编译器犯傻行为,优化还不如不优化
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CBFC</Address>
+      <Comment>但是到这里就稍有不同
+获取飞行植物指针(因为毕竟是按照投掷优先级)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CC04</Address>
+      <Comment>常规植物指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CC0C</Address>
+      <Comment>南瓜
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CC14</Address>
+      <Comment>底盘
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD40</Address>
+      <Comment>Projectile::FindCollisionTarget(Projectile* this)
+堆栈传参,执行这条指令前,参数保存至[esp+4]
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD43</Address>
+      <Comment>这几个push全是保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD4B</Address>
+      <Comment>PeaAboutToHitTorchwood()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD50</Address>
+      <Comment>if (PeaAboutToHitTorchwood())
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD52</Address>
+      <Comment>如果子弹暂时还不会穿过树桩,则跳走到正常逻辑
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD60</Address>
+      <Comment>局部变量,引用/指针传参
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD64</Address>
+      <Comment>根据经验判断,edi里面也是子弹指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD66</Address>
+      <Comment>Projectile::GetProjectileRect(ecx = _Out_ Rect&amp;&amp; aRect, esi = Projectile* this)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD6B</Address>
+      <Comment>将mBoard赋值给edx
+edx = Board* this
+
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD70</Address>
+      <Comment>esi = Zombie*&amp; theZombie
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD80</Address>
+      <Comment>mBoard-&gt;IterateZombies(aZombie)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD85</Address>
+      <Comment>while (mBoard-&gt;IterateZombies(aZombie))
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD8D</Address>
+      <Comment>ebp = aMinX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD91</Address>
+      <Comment>将esi赋值为僵尸指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD95</Address>
+      <Comment>获取僵尸所在行
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CD98</Address>
+      <Comment>僵尸所在行与子弹所在行作减法比较
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDA0</Address>
+      <Comment>僵尸是僵王吗?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDA5</Address>
+      <Comment>eax存放了子弹与僵尸行数的差值,判断是否为零
+(即僵尸和子弹是否在同一行)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDA7</Address>
+      <Comment>不在同一行,就判断下一个僵尸
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDB1</Address>
+      <Comment>aZombie-&gt;EffectedByDamage((unsigned int)mDamageRangeFlags)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDB6</Address>
+      <Comment>if (... &amp;&amp; aZombie-&gt;EffectedByDamage((unsigned int)mDamageRangeFlags))
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDB8</Address>
+      <Comment>如果僵尸不会被打到,则跳走到下一个僵尸
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDBE</Address>
+      <Comment>潜水僵尸正在跳水吗?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDCA</Address>
+      <Comment>mPosZ &gt;= 45.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDD2</Address>
+      <Comment>如果潜水僵尸正在跳水且满足纵向偏移条件,则判断下一个僵尸
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDD8</Address>
+      <Comment>1437子弹需要特判
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDDE</Address>
+      <Comment>子弹的存在计时是否已经超过了25?
+ebx被复用了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDE1</Address>
+      <Comment>如果杨桃子弹存在时间不超过25,也不进行处理
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDE5</Address>
+      <Comment>mVelX &gt;= 0.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDEF</Address>
+      <Comment>子弹是玉米加农炮吗?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDF3</Address>
+      <Comment>如果是,也要跳转到下一个僵尸
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CDFB</Address>
+      <Comment>Zombie::GetZombieRect(edi = _Out_ Rect&amp;&amp; aZombieRect, ebx = Zombie* this)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE00</Address>
+      <Comment>获取僵尸矩形的数据
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE04</Address>
+      <Comment>if (aZombie-&gt;mX &lt; aMinX)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE1B</Address>
+      <Comment>GetRectOverlap函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE35</Address>
+      <Comment>GetRectOverlap函数展开完毕
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE37</Address>
+      <Comment>如果结果小于零(即:没有重叠)则跳转
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE39</Address>
+      <Comment>if (aBestZombie == nullptr...)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE66</Address>
+      <Comment>下一轮while循环
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE6C</Address>
+      <Comment>遍历完成
+return aBestZombie
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE80</Address>
+      <Comment>继续分析代码
+Projectile::CheckForCollision(Projectile* this)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE83</Address>
+      <Comment>保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE84</Address>
+      <Comment>保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE85</Address>
+      <Comment>堆栈的局部变量和形参真是一个麻烦事
+获取子弹指针,保存到ebp
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE89</Address>
+      <Comment>子弹运动方式
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE8C</Address>
+      <Comment>mMotionType == ProjectileMotion::MOTION_PUFF
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE8F</Address>
+      <Comment>仍然是保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE90</Address>
+      <Comment>仍然是保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE91</Address>
+      <Comment>如果子弹不是按照孢子的方式运动,则跳转
+if (mMotionType == ProjectileMotion::MOTION_PUFF)
+此时[esp+34]才是形参地址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE93</Address>
+      <Comment>小喷子弹存在是否超过了75?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CE97</Address>
+      <Comment>不小于则跳转,即:
+小喷子弹应该消亡
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CEA0</Address>
+      <Comment>(800.00)
+比较子弹横坐标有没有超过800.00,若超过也应该消亡
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CEA6</Address>
+      <Comment>将浮点标志位的值加载到ax
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CEB7</Address>
+      <Comment>(0.00)
+if (mPosX + mWidth &lt; 0.0f)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CEC8</Address>
+      <Comment>if (mMotionType == ProjectileMotion::MOTION_HOMING)
+ProjectileMotion::HOMING表示追踪
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CED1</Address>
+      <Comment>香蒲刺的目标僵尸编号
+ecx = ZombieID theZombieID
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CED7</Address>
+      <Comment>edx = Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CEDA</Address>
+      <Comment>mBoard-&gt;ZombieTryToGet(mTargetZombieID);
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CEE1</Address>
+      <Comment>获取到的僵尸会不会为空呢?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CEE3</Address>
+      <Comment>如果为空则返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CEE9</Address>
+      <Comment>获取伤害类型theDamageRangeFlags
+猫尾草的伤害类型是0B
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CEEF</Address>
+      <Comment>aZombie-&gt;EffectedByDamage((unsigned int)mDamageRangeFlags)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CEF4</Address>
+      <Comment>if (aZombie-&gt;EffectedByDamage((unsigned int)mDamageRangeFlags))
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CEF6</Address>
+      <Comment>如果打不到僵尸则跳走
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF02</Address>
+      <Comment>Projectile::GetProjectileRect(ecx = _Out_ Rect&amp;&amp; aRect, esi = Projectile* this)
+结果保存至[esp+20]
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF0B</Address>
+      <Comment>Zombie::GetZombieRect(edi = _Out_ Rect&amp;&amp; aZombieRect, ebx = Zombie* this)
+结果保存至[esp+10]
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF16</Address>
+      <Comment>GetRectOverlap(aProjectileRect, aZombieRect)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF1B</Address>
+      <Comment>猫尾草子弹需要专门碰撞检测,而不是调用FindTarget...
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF1D</Address>
+      <Comment>if (GetRectOverlap(aProjectileRect, aZombieRect) &gt;= 0)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF23</Address>
+      <Comment>mPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF26</Address>
+      <Comment>aZombieRect.mY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF31</Address>
+      <Comment>若打不到则跳转到返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF37</Address>
+      <Comment>ecx = aZombieRect.mY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF3B</Address>
+      <Comment>mPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF4C</Address>
+      <Comment>mPosY &lt; aZombieRect.mY + aZombieRect.mHeight
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF53</Address>
+      <Comment>条件跳转到返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF59</Address>
+      <Comment>注意ebx是获取到的僵尸指针
+eax = Zombie* theZombie = 0(默认参数)
+此处进行了参数传递,故不使用默认参数
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF5B</Address>
+      <Comment>ecx = Projectile* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF5D</Address>
+      <Comment>DoImpact(aZombie);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF6C</Address>
+      <Comment>获取子弹类型
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF6F</Address>
+      <Comment>是否是星星子弹?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF7A</Address>
+      <Comment>mPosY &gt; 600.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CF9C</Address>
+      <Comment>豌豆子弹
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFA0</Address>
+      <Comment>星星子弹
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFB6</Address>
+      <Comment>从46CF9C一直到这里,对应:
+if ((mProjectileType == ProjectileType::PROJECTILE_PEA || mProjectileType == ProjectileType::PROJECTILE_STAR) &amp;&amp; mShadowY - mPosY &gt; 90.0f)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFBC</Address>
+      <Comment>回忆一下:
+edx是子弹的运动方式
+是否为"缓慢漂浮向右（无碰撞）"
+??又是弱智代码?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFBF</Address>
+      <Comment>如果是则跳转到返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFC8</Address>
+      <Comment>在这个位置,ebp是子弹指针
+Projectile* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFC9</Address>
+      <Comment>如果不是僵尸豌豆,则跳转到下一个判断
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFCF</Address>
+      <Comment>Plant* aPlant = FindCollisionTargetPlant()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFD6</Address>
+      <Comment>如果打不到植物则跳转到返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFD8</Address>
+      <Comment>获取子弹类型(肯定是0D)
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFDB</Address>
+      <Comment>mul ecx,3
+
+
+现在来解释一下这里的代码究竟是怎么回事
+它的实质应该是mov edx,ProjectileDefinition[0xD][0x2]
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFDE</Address>
+      <Comment>ecx = 9C
+69F1C0是gProjectileDefinition[]的位置
+经过计算,偏移值是A4
+获取僵尸豌豆的伤害值
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFE5</Address>
+      <Comment>获取植物发光倒计时
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFEB</Address>
+      <Comment>植物血量-=伤害值
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6CFEE</Address>
+      <Comment>25,接下来的指令对应
+aPlant-&gt;mEatenFlashCountdown = max(aPlant-&gt;mEatenFlashCountdown, 25);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D001</Address>
+      <Comment>很重要,46D027会考
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D006</Address>
+      <Comment>mApp-&gt;PlayFoley(FoleyType::FOLEY_SPLAT);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D00B</Address>
+      <Comment>mPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D00E</Address>
+      <Comment>(17.00)
+mPosY+17.00
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D014</Address>
+      <Comment>图层
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D01D</Address>
+      <Comment>浮点数传参,参数是mPosY+17.00
+float Y
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D021</Address>
+      <Comment>mRenderOrder + 1
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D027</Address>
+      <Comment>eax = ParticleEffect theEffect
+ParticleEffect::PARTICLE_PEA_SPLAT
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D031</Address>
+      <Comment>(3.00)
+mPosX - 3.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D03F</Address>
+      <Comment>float X
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D042</Address>
+      <Comment>mApp-&gt;AddTodParticle(mPosX - 3.0f, mPosY + 17.0f, mRenderOrder + 1, ParticleEffect::PARTICLE_PEA_SPLAT);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D047</Address>
+      <Comment>eax = Projectile* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D049</Address>
+      <Comment>Die()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D058</Address>
+      <Comment>如果不是僵尸豌豆,就应该跳转到这里,注意刚刚已经进行了一次push ebp
+eax = FindCollisionTarget()
+
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D05D</Address>
+      <Comment>aZombie = eax,该变量保存在edx而非内存中
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D05F</Address>
+      <Comment>if (aZombie)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D061</Address>
+      <Comment>如果没有获取到僵尸则跳转到返回,注意这是向前跳转,实际上向后跳转也是可以的
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D063</Address>
+      <Comment>aZombie-&gt;mOnHighGround
+僵尸是否在高地(内侧版第六大关)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D06A</Address>
+      <Comment>如果僵尸不在高地上则跳转(此时能够打中僵尸)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D06C</Address>
+      <Comment>ecx = Projectile* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D06E</Address>
+      <Comment>CantHitHighGround()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D075</Address>
+      <Comment>不能打中高地则跳转(到返回)
+注意这又是一个向前返回
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D077</Address>
+      <Comment>eax = Zombie* theZombie = 0
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D079</Address>
+      <Comment>ecx = Projectile* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D07B</Address>
+      <Comment>DoImpact(aZombie);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D230</Address>
+      <Comment>Projectile::GetDamageFlags(eax = Zombie* theZombie, edi = Projectile* this)
+获取子弹类型,保存至ecx
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D233</Address>
+      <Comment>本次函数代码分析中,只有一个易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D234</Address>
+      <Comment>unsigned int aDamageFlags = 0U;
+该变量被保存在esi中
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D236</Address>
+      <Comment>火豌豆
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D23B</Address>
+      <Comment>if (theZombie)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D23F</Address>
+      <Comment>僵尸种类
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D242</Address>
+      <Comment>僵尸是投篮吗?
+mZombieType == ZombieType::ZOMBIE_CATAPULT
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D247</Address>
+      <Comment>冰车
+mZombieType == ZombieType::ZOMBIE_ZAMBONI
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D24C</Address>
+      <Comment>mShieldType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D252</Address>
+      <Comment>判断僵尸防具是不是铁门
+mShieldType == ShieldType::SHIELDTYPE_DOOR
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D257</Address>
+      <Comment>梯子
+mShieldType == ShieldType::SHIELDTYPE_LADDER
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D25A</Address>
+      <Comment>下一个else if
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D25C</Address>
+      <Comment>西瓜
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D261</Address>
+      <Comment>冰瓜
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D266</Address>
+      <Comment>火豌豆（再次判断）
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D26B</Address>
+      <Comment>SetBit(aDamageFlags, (int)DamageFlags::DAMAGE_HITS_SHIELD_AND_BODY, true);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D272</Address>
+      <Comment>子弹的运动方式
+从这里开始对应有一个else if
+
+特别说明:
+参考版源码是这样的:
+else if (mMotionType == ProjectileMotion::MOTION_LOBBED || mMotionType == ProjectileMotion::MOTION_BACKWARDS)
+{
+	SetBit(aDamageFlags, (int)DamageFlags::DAMAGE_BYPASSES_SHIELD, true);
+}
+else if (mMotionType == ProjectileMotion::MOTION_STAR &amp;&amp; mVelX &lt; 0.0f)
+{
+	SetBit(aDamageFlags, (int)DamageFlags::DAMAGE_BYPASSES_SHIELD, true);
+}
+
+但是编译器发现两个执行体一模一样,所以将它们合并了:
+else if (mMotionType == ProjectileMotion::MOTION_LOBBED || mMotionType == ProjectileMotion::MOTION_BACKWARDS || (mMotionType == ProjectileMotion::MOTION_STAR &amp;&amp; mVelX &lt; 0.0f))
+{
+	SetBit(aDamageFlags, (int)DamageFlags::DAMAGE_BYPASSES_SHIELD, true);
+}
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D275</Address>
+      <Comment>抛物线
+mMotionType == ProjectileMotion::MOTION_LOBBED
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D278</Address>
+      <Comment>跳转到if判断的执行体,注意执行体只有一条指令
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D27A</Address>
+      <Comment>水平向左
+mMotionType == ProjectileMotion::MOTION_BACKWARDS
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D27F</Address>
+      <Comment>斜向运动
+mMotionType == ProjectileMotion::MOTION_STAR
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D286</Address>
+      <Comment>mVelX &lt; 0.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D290</Address>
+      <Comment>SetBit(aDamageFlags, (int)DamageFlags::DAMAGE_BYPASSES_SHIELD, true);
+因为SetBit是内联函数,所以被无条件展开了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D295</Address>
+      <Comment>从这里开始将是下一个代码部分
+mProjectileType == ProjectileType::PROJECTILE_SNOWPEA
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D29A</Address>
+      <Comment>冰瓜
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6D29F</Address>
+      <Comment>SetBit(aDamageFlags, (int)DamageFlags::DAMAGE_FREEZE, true);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E000</Address>
+      <Comment>Projectile::DoImpact(eax = Zombie* theZombie = 0, ecx = Projectile* this)
+这个函数也需要重构
+僵尸指针eax,子弹指针ecx
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E003</Address>
+      <Comment>仍然是易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E007</Address>
+      <Comment>保存eax僵尸指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E009</Address>
+      <Comment>保存ecx子弹指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E00B</Address>
+      <Comment>Zombie* theZombie
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E00C</Address>
+      <Comment>eax = Projectile* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E00E</Address>
+      <Comment>PlayImpactSound(theZombie);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E013</Address>
+      <Comment>一定要注意到edi是子弹指针
+获取子弹类型
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E016</Address>
+      <Comment>子弹类型是火豌豆吗?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E01B</Address>
+      <Comment>theZombie
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E01D</Address>
+      <Comment>if (mProjectileType == ProjectileType::PROJECTILE_FIREBALL &amp;&amp; theZombie)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E01F</Address>
+      <Comment>获取僵尸类型
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E022</Address>
+      <Comment>僵尸是投篮吗?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E027</Address>
+      <Comment>冰车
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E02C</Address>
+      <Comment>僵尸防具类型
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E032</Address>
+      <Comment>僵尸防具是铁门吗?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E037</Address>
+      <Comment>梯子
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E03A</Address>
+      <Comment>这一大堆je 0046E065都是在处理溅射伤害问题
+IsSplashDamage(theZombie)进行了函数展开
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E046</Address>
+      <Comment>火豌豆进行了两次判断
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E050</Address>
+      <Comment>无论怎么说:火豌豆的常规伤害在这里进行处理
+当且仅当火豌豆击中僵尸且存在溅射,那么执行这里到46E063
+
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E054</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E056</Address>
+      <Comment>Zombie::RemoveColdEffects(eax = Zombie* this)
+theZombie-&gt;RemoveColdEffects();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E05B</Address>
+      <Comment>Zombie* theZombie
+一切溅射,无论是火豌豆还是西瓜冰西瓜伤害都在这里处理
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E05C</Address>
+      <Comment>eax = Projectile* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E05E</Address>
+      <Comment>DoSplashDamage(theZombie);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E065</Address>
+      <Comment>对僵尸不存在溅射时,会执行这里到46E078
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E069</Address>
+      <Comment>eax = Zombie* theZombie
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E06B</Address>
+      <Comment>edi已经是子弹指针了
+GetDamageFlags(theZombie)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E070</Address>
+      <Comment>又是代码混淆
+总之,这等价于mov ecx,12(十六进制,对应十进制18)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E073</Address>
+      <Comment>又来了...偏移量50
+等价于mov edx,28(十进制:40)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E07A</Address>
+      <Comment>int theDamage
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E07B</Address>
+      <Comment>theZombie-&gt;TakeDamage(GetProjectileDef().mDamage, aDamageFlags);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E080</Address>
+      <Comment>无论是否产生溅射,都会执行到这里
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E083</Address>
+      <Comment>子弹图层
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E086</Address>
+      <Comment>mPosX - mVelX
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E089</Address>
+      <Comment>子弹类型
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E08C</Address>
+      <Comment>子弹图层+1
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E08F</Address>
+      <Comment>现在子弹类型是eax而非ebx了!
+西瓜
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E092</Address>
+      <Comment>通过[esp+24]获取返回地址
+当前的[esp+18]肯定是局部变量
+float aLastPosX = mPosX - mVelX;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E096</Address>
+      <Comment>mPosZ
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E099</Address>
+      <Comment>mPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E09C</Address>
+      <Comment>mVelY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E09F</Address>
+      <Comment>mVelZ
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E0A2</Address>
+      <Comment>float aLastPosY = mPosY + mPosZ - mVelY - mVelZ;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E0A6</Address>
+      <Comment>mPosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E0AF</Address>
+      <Comment>mPosX + 12.00f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E0B3</Address>
+      <Comment>float aSplatPosX = mPosX + 12.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E0BA</Address>
+      <Comment>float aSplatPosY = mPosY + 12.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E0BE</Address>
+      <Comment>远距离判断
+此处利用的是cmp ebx,03的判断结果(46E08F)
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E0D4</Address>
+      <Comment>aLastPosY + 30.0f
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E0D6</Address>
+      <Comment>ParticleEffect::PARTICLE_MELONSPLASH
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E0DA</Address>
+      <Comment>图层
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E0F6</Address>
+      <Comment>Die()
+又是编译优化,因为Die()函数调用在DoImpact末尾,所以直接使用了跳转而非调用指令
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E0FB</Address>
+      <Comment>如果子弹类型不是西瓜则跳转到这里
+冰瓜
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E100</Address>
+      <Comment>冰瓜代码
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E116</Address>
+      <Comment>ParticleEffect::PARTICLE_WINTERMELON
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E11A</Address>
+      <Comment>图层
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E136</Address>
+      <Comment>跳转到执行子弹效果的指令
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E13B</Address>
+      <Comment>玉米炮
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E144</Address>
+      <Comment>edi是子弹指针
+mCobTargetRow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E14A</Address>
+      <Comment>mPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E14D</Address>
+      <Comment>(40.00)
+mPosY + 40.00f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E153</Address>
+      <Comment>edx = 基址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E155</Address>
+      <Comment>10000
+为什么会出现把行数乘以10000的离谱操作呢?
+int Board::MakeRenderOrder(RenderLayer theRenderLayer, int theRow, int theLayerOffset)
+{
+	return theRow * (int)RenderLayer::RENDER_LAYER_ROW_OFFSET + theRenderLayer + theLayerOffset;
+}
+该函数被展开了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E163</Address>
+      <Comment>动画信息
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E169</Address>
+      <Comment>粒子系统
+esi = TodParticleHolder* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E16B</Address>
+      <Comment>ParticleEffect theEffect
+ParticleEffect::PARTICLE_BLASTMARK
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E173</Address>
+      <Comment>int theRenderOrder
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E177</Address>
+      <Comment>float theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E17E</Address>
+      <Comment>(80.00)
+mPosX+80.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E18C</Address>
+      <Comment>float theX
+浮点数传参是fstp [esp+...]
+手动将浮点数赋值给栈顶附近元素
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E18F</Address>
+      <Comment>mApp-&gt;AddTodParticle(mPosX + 80.0f, mPosY + 40.0f, aRenderOrder, ParticleEffect::PARTICLE_BLASTMARK);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E194</Address>
+      <Comment>mPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E199</Address>
+      <Comment>(40.00)
+mPosY + 40.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1A5</Address>
+      <Comment>esi = TodParticleHolder* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1A7</Address>
+      <Comment>ParticleEffect theParticleEffect
+ParticleEffect::PARTICLE_POPCORNSPLASH
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1AD</Address>
+      <Comment>int theRenderOrder
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1B5</Address>
+      <Comment>float theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1B9</Address>
+      <Comment>mPosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1BC</Address>
+      <Comment>(80.00)
+mPosX + 80.00
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1C2</Address>
+      <Comment>临时保存?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1CA</Address>
+      <Comment>float theX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1CD</Address>
+      <Comment>mApp-&gt;AddTodParticle(mPosX + 80.0f, mPosY + 40.0f, mRenderOrder + 1, ParticleEffect::PARTICLE_POPCORNSPLASH);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1D2</Address>
+      <Comment>基址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1D6</Address>
+      <Comment>(100)
+这是一个全局整型常量
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1E2</Address>
+      <Comment>int theSoundNum
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1E3</Address>
+      <Comment>LawnApp::PlaySample(int theSoundNum, ecx = LawnApp* this)
+C++代码:mApp-&gt;PlaySample(SOUND_DOOMSHROOM);
+这是一个虚函数多态调用
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1E5</Address>
+      <Comment>以下是mBoard-&gt;ShakeBoard(3, -4);的函数展开
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1E8</Address>
+      <Comment>mShakeCounter
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1F2</Address>
+      <Comment>3,mShakeAmountX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E1FC</Address>
+      <Comment>-4,mShakeAmountY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E206</Address>
+      <Comment>用eax来保存子弹指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E20F</Address>
+      <Comment>Die();
+调用被优化为跳转
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E214</Address>
+      <Comment>此时eax仍然是子弹类型
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E216</Address>
+      <Comment>如果子弹不是豌豆则跳转
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E21C</Address>
+      <Comment>mov ebp,25
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E225</Address>
+      <Comment>aSplatPosX -= 15.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E22E</Address>
+      <Comment>子弹类型是不是冰豌豆?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E237</Address>
+      <Comment>mov ebp,2B
+ParticleEffect::PARTICLE_SNOWPEA_SPLAT,
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E240</Address>
+      <Comment>aSplatPosX -= 15.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E249</Address>
+      <Comment>火豌豆
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E24E</Address>
+      <Comment>ecx = Zombie* theZombie
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E250</Address>
+      <Comment>eax = Projectile* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E252</Address>
+      <Comment>IsSplashDamage(theZombie)
+为了绘制特效,需要再次判断溅射问题
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E257</Address>
+      <Comment>if (IsSplashDamage(theZombie))
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E259</Address>
+      <Comment>如果不是,则直接跳转到返回
+因为非溅射伤害无需绘制特效
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E25F</Address>
+      <Comment>mPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E262</Address>
+      <Comment>eax = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E264</Address>
+      <Comment>(20.00)
+mPosY - 20.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E26E</Address>
+      <Comment>ebx = ReanimationType theReanimationType
+ReanimationType::REANIM_JALAPENO_FIRE
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E273</Address>
+      <Comment>临时保存
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E27B</Address>
+      <Comment>float theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E27F</Address>
+      <Comment>mPosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E282</Address>
+      <Comment>(38.00)
+mPosX + 38.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E288</Address>
+      <Comment>临时保存
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E290</Address>
+      <Comment>float theX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E293</Address>
+      <Comment>Reanimation* aFireReanim = mApp-&gt;AddReanimation(mPosX + 38.0f, mPosY - 20.0f, mRenderOrder + 1, ReanimationType::REANIM_JALAPENO_FIRE);
+变量aFireReanim直接保存在寄存器中
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E29E</Address>
+      <Comment>aFireReanim-&gt;mAnimTime = 0.25f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2A7</Address>
+      <Comment>aFireReanim-&gt;mAnimRate = 24.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2AA</Address>
+      <Comment>(0.70)
+以下是函数展开:
+void Reanimation::OverrideScale(float theScaleX, float theScaleY)
+{
+	mOverlayMatrix.m00 = theScaleX;
+	mOverlayMatrix.m11 = theScaleY;
+}
+aFireReanim-&gt;OverrideScale(0.7f, 0.4f);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2C5</Address>
+      <Comment>Die()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2CA</Address>
+      <Comment>星星
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2CF</Address>
+      <Comment>mov ebp,29
+ParticleEffect::PARTICLE_STAR_SPLAT,
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2D2</Address>
+      <Comment>跳转到公共代码
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2D4</Address>
+      <Comment>孢子
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2D9</Address>
+      <Comment>aSplatPosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2DD</Address>
+      <Comment>mov ebp,28
+ParticleEffect::PARTICLE_PUFF_SPLAT
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2E0</Address>
+      <Comment>(20.00)
+aSplatPosX - 20.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2E6</Address>
+      <Comment>aSplatPosX -= 20.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2EA</Address>
+      <Comment>跳转到公共代码
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2EC</Address>
+      <Comment>卷心菜
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2F1</Address>
+      <Comment>aLastPosX
+
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2F5</Address>
+      <Comment>mov ebp,27
+ParticleEffect::PARTICLE_CABBAGE_SPLAT
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2F8</Address>
+      <Comment>(38.00)
+aLastPosX - 38.0f
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E2FE</Address>
+      <Comment>aSplatPosX = aLastPosX - 38.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E302</Address>
+      <Comment>aLastPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E306</Address>
+      <Comment>(23.00)
+aLastPosY + 23.00
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E30C</Address>
+      <Comment>aSplatPosY = aLastPosY + 23.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E310</Address>
+      <Comment>跳转到公共代码
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E312</Address>
+      <Comment>黄油
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E315</Address>
+      <Comment>如果不是黄油,就直接跳转到返回了
+(当然,"返回"只是一个便于理解的说法,实际上还需要调用Die())
+特别关注:DoImpact函数似乎不存在对玉米粒的特殊处理逻辑
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E31B</Address>
+      <Comment>esi是僵尸指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E31D</Address>
+      <Comment>aLastPosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E321</Address>
+      <Comment>(20.00)
+aLastPosX - 20.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E327</Address>
+      <Comment>mov ebp,26
+ParticleEffect::PARTICLE_BUTTER_SPLAT
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E32A</Address>
+      <Comment>aSplatPosX = aLastPosX - 20.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E32E</Address>
+      <Comment>aLastPosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E338</Address>
+      <Comment>aSplatPosY = aLastPosY + 63.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E342</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E344</Address>
+      <Comment>theZombie-&gt;ApplyButter();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E349</Address>
+      <Comment>这是公共代码部分
+判断僵尸指针是否为空
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E35E</Address>
+      <Comment>获取僵尸状态
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E361</Address>
+      <Comment>是否处于潜水入水状态?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E36C</Address>
+      <Comment>float aPosX = aSplatPosX + 52.0f - theZombie-&gt;mX;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E383</Address>
+      <Comment>海豚跳完之后
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E392</Address>
+      <Comment>子弹运动类型
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E3A6</Address>
+      <Comment>aPosX -= 80.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E408</Address>
+      <Comment>ParticleEffect theEffect
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E409</Address>
+      <Comment>利用 SSE 相关指令将 st(0) 的浮点数强制转化为整数存储在 eax 中。
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E412</Address>
+      <Comment>int thePosY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E418</Address>
+      <Comment>int thePosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E419</Address>
+      <Comment>eax = Zombie* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E41B</Address>
+      <Comment>theZombie-&gt;AddAttachedParticle(aPosX, aPosY, aEffect);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E422</Address>
+      <Comment>恢复易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E42E</Address>
+      <Comment>好像几乎不会执行到这里??
+原因:只有46E33C和46E34B的跳转指令有可能执行到这里
+但是这两个跳转都要求僵尸指针为空
+在"鞭尸"的时候会执行到这里
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E43A</Address>
+      <Comment>esi = TodParticleHolder* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E43C</Address>
+      <Comment>ParticleEffect theParticleEffect
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E43D</Address>
+      <Comment>int theRenderOrder
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E441</Address>
+      <Comment>float theY/theX
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E449</Address>
+      <Comment>float theX/theY
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E44C</Address>
+      <Comment>创建子弹效果
+mApp-&gt;AddTodParticle(aLastPosX + 30.0f, aLastPosY + 30.0f, mRenderOrder + 1, ParticleEffect::PARTICLE_MELONSPLASH);
+编译优化,源代码中并不是call 518A70
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E451</Address>
+      <Comment>eax = Projectile* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6E460</Address>
+      <Comment>Projectile::Update(eax = Projectile* this)
+这已经是另一个函数的起始地址了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6EB20</Address>
+      <Comment>Projectile::Die(eax = Projectile* this)
+又是易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6EB23</Address>
+      <Comment>mov esi,子弹指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6EB25</Address>
+      <Comment>子弹类型
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6EB28</Address>
+      <Comment>孢子
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6EB2B</Address>
+      <Comment>mDead = true;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+6EB42</Address>
+      <Comment>mAttachmentID
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273D0</Address>
+      <Comment>现在开始分析代码!
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273D3</Address>
+      <Comment>保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273D4</Address>
+      <Comment>保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273D5</Address>
+      <Comment>保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273D8</Address>
+      <Comment>判断是否处于濒死状态
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273DF</Address>
+      <Comment>濒死则跳转(到返回)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273E5</Address>
+      <Comment>僵尸的属性倒计时赋值给eax
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273E8</Address>
+      <Comment>十进制35,判断是否到了发射子弹的时间
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273EB</Address>
+      <Comment>如果不发射子弹,则跳走
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273ED</Address>
+      <Comment>执行完毕之后,eax=基址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273EF</Address>
+      <Comment>获取头部动画(如果参考源码,这里进行了编译优化)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273F5</Address>
+      <Comment>找到动画信息
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273FB</Address>
+      <Comment>粒子系统数量上限(人话:子弹上限)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1273FE</Address>
+      <Comment>这个位运算是为了把动画信息限定在一个范围内
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12740F</Address>
+      <Comment>StartBlend()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12744B</Address>
+      <Comment>以上全是在传参,对应函数调用:
+aHeadReanim-&gt;PlayReanim("anim_shooting", ReanimLoopType::REANIM_PLAY_ONCE_AND_HOLD, 20, 35.0f);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127450</Address>
+      <Comment>返回了:35秒只是播放射击动画,不涉及实际产生子弹
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127457</Address>
+      <Comment>由于eax是属性倒计时,所以这里在判断是否处于添加子弹阶段
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127459</Address>
+      <Comment>如果不发射子弹,则跳走到返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12745F</Address>
+      <Comment>接下来一大堆都不用看,功能类似
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127511</Address>
+      <Comment>int aTrackIndex = aBodyReanim-&gt;FindTrackIndex("anim_head1");
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127555</Address>
+      <Comment>aBodyReanim-&gt;GetCurrentTransform(aTrackIndex, &amp;aTransform);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12755A</Address>
+      <Comment>加载横坐标
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12755D</Address>
+      <Comment>将edx赋值为所在行数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127564</Address>
+      <Comment>将eax赋值为图层
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127567</Address>
+      <Comment>ProjectileType theProjectileType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127569</Address>
+      <Comment>int theRow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127570</Address>
+      <Comment>int theRenderOrder
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127599</Address>
+      <Comment>int theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12759F</Address>
+      <Comment>int theX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275A0</Address>
+      <Comment>eax = Board*
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275A3</Address>
+      <Comment>"Board::AddProjectile
+(ProjectileType theProjectileType, int theRow, int theRenderOrder, int theY, int theX, eax = Board* this)"
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275A8</Address>
+      <Comment>子弹方向设置
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275AF</Address>
+      <Comment>重制属性倒计时
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275C0</Address>
+      <Comment>僵尸指针:edi
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275C3</Address>
+      <Comment>栈对齐
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275C9</Address>
+      <Comment>同理,判断有没有濒死
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275D0</Address>
+      <Comment>保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275D1</Address>
+      <Comment>保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275D2</Address>
+      <Comment>若濒死则跳转到返回
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275D8</Address>
+      <Comment>属性倒计时
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275DC</Address>
+      <Comment>若倒计时不为零则跳转到返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275E4</Address>
+      <Comment>学习浮点数指令之后应该重新分析代码
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275E6</Address>
+      <Comment>if (!mMuteSoundsForCutscene)
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275EF</Address>
+      <Comment>%s
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275F9</Address>
+      <Comment>if (aFoleyParams-&gt;mPitchRange != 0.0f)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1275FF</Address>
+      <Comment>mApp-&gt;mSoundSystem
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12760C</Address>
+      <Comment>aFoleyParams-&gt;mPitchRange
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127612</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127613</Address>
+      <Comment>float range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127616</Address>
+      <Comment>Sexy::Rand(aFoleyParams-&gt;mPitchRange)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12761B</Address>
+      <Comment>aPitch = Sexy::Rand(aFoleyParams-&gt;mPitchRange);  // 在范围内随机选取一个音高
+此处[esp+10]对应aPitch
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12761F</Address>
+      <Comment>_cdecl
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127622</Address>
+      <Comment>由于处于堆栈不同阶段
+这里的[esp+0C]仍然对应aPitch
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127626</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127627</Address>
+      <Comment>eax = FoleyType theFoleyType
+/*FoleyType::FOLEY_JALAPENO_IGNITE*/
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12762C</Address>
+      <Comment>float thePitch
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12762F</Address>
+      <Comment>ecx = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127631</Address>
+      <Comment>PlayFoleyPitch(theFoleyType, aPitch);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127636</Address>
+      <Comment>再次函数展开,展开前:
+mApp-&gt;PlayFoley(FoleyType::FOLEY_JUICY);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127666</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127667</Address>
+      <Comment>float range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127673</Address>
+      <Comment>_cdecl
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12767A</Address>
+      <Comment>占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12767B</Address>
+      <Comment>/*FoleyType::FOLEY_JUICY*/
+eax = FoleyType theFoleyType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127680</Address>
+      <Comment>float thePitch
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127683</Address>
+      <Comment>ecx = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12768C</Address>
+      <Comment>弱智的代码混淆
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12768E</Address>
+      <Comment>获取僵尸所在行
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127691</Address>
+      <Comment>ebx = Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127694</Address>
+      <Comment>int theRow
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127695</Address>
+      <Comment>Board::DoFwoosh(int theRow, ebx = Board* this)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12769A</Address>
+      <Comment>将eax赋值为mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12769D</Address>
+      <Comment>让画面不再正常,即mShakeCounter = 12
+此处进行了函数展开的编译优化
+原型:mBoard-&gt;ShakeBoard(3, -4);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276A7</Address>
+      <Comment>mShakeAmountX = 3;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276B1</Address>
+      <Comment>mShakeAmountY = -4;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276BB</Address>
+      <Comment>edx = Board* this
+烧植物开始-----------
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276BE</Address>
+      <Comment>esi = Plant*&amp; thePlant
+必须注意到,C++引用的底层仍然是指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276C2</Address>
+      <Comment>Plant* aPlant = nullptr;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276CA</Address>
+      <Comment>mBoard-&gt;IteratePlants(aPlant)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276CF</Address>
+      <Comment>判断是否遍历到下一个植物
+while (mBoard-&gt;IteratePlants(aPlant))
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276D1</Address>
+      <Comment>若遍历失败,则跳走到辣椒僵尸死亡
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276D3</Address>
+      <Comment>接下来就应该是遍历成功,即获取到植物的处理逻辑了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276E0</Address>
+      <Comment>遍历成功的处理逻辑::
+获取僵尸所在行数,存放在ecx
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276E3</Address>
+      <Comment>将植物指针存放在eax
+理解这一点要求必须能够理解"引用的底层是指针"
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276E7</Address>
+      <Comment>比较植物和僵尸所在行数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276EA</Address>
+      <Comment>若不处于同一行则跳走
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276EC</Address>
+      <Comment>判断植物是不是倭瓜,因为需要单独处理
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276F0</Address>
+      <Comment>如果不是倭瓜则跳走
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276F2</Address>
+      <Comment>将ecx赋值为植物状态,注意植物肯定是倭瓜
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276F5</Address>
+      <Comment>倭瓜是否处于跳起状态呢?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276F8</Address>
+      <Comment>倭瓜在跳起时是无敌的
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276FA</Address>
+      <Comment>倭瓜下砸也是无敌的
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1276FF</Address>
+      <Comment>倭瓜扁仍然是无敌的
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127704</Address>
+      <Comment>如果植物不处于无敌帧那就到这里
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12770B</Address>
+      <Comment>如果植物已经被压扁了也就不需要再处理了(禁止鞭尸)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12770D</Address>
+      <Comment>同上,如果植物已经被蹦极抱走了也不能鞭尸
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127716</Address>
+      <Comment>植物是否消失?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127722</Address>
+      <Comment>被吃掉的植物数更新
+在5276D3处已经设置了ebx为1
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127729</Address>
+      <Comment>aPlant-&gt;Die()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12772E</Address>
+      <Comment>如果发现植物和僵尸不处于同一行,会直接跳转到这里
+如果它们处于同一行也会顺序执行到这里的指令
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127731</Address>
+      <Comment>再次调用mBoard-&gt;IteratePlants(aPlant)
+然后进行判断,也急速进入下一层循环
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12773C</Address>
+      <Comment>烧植物结束---------
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12773E</Address>
+      <Comment>这就是遍历失败或者遍历结束之后发生的事情:辣椒僵尸死亡
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127740</Address>
+      <Comment>DieNoLoot()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127753</Address>
+      <Comment>老规矩,以下四条指令全是保存易变寄存器
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127757</Address>
+      <Comment>将代表僵尸指针的赋值给edi,虽然edi本来就是僵尸指针了
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127760</Address>
+      <Comment>如果僵尸已经濒死,那就跳转到返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127766</Address>
+      <Comment>把eax赋值为属性倒计时
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12776C</Address>
+      <Comment>属性倒计时为100时,播放射击动画
+本条指令:如果不是100,则跳走
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12776E</Address>
+      <Comment>设置eax为基址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127770</Address>
+      <Comment>设置edi为头部动画贴图ID
+mSpecialHeadReanimID
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127776</Address>
+      <Comment>获取动画信息,并将指针保存到ecx
+mEffectSystem
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12777C</Address>
+      <Comment>获取粒子系统上限
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12777F</Address>
+      <Comment>保留edi低16位
+(unsigned int)theReanimationID
+个人经验:mov edi,26
+
+theReanimationID是形参,
+实参是aSpecialHeadReanimID
+
+
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127785</Address>
+      <Comment>根据经验判断,这等同于mov esi,BE
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127788</Address>
+      <Comment>结果是17C0
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12778B</Address>
+      <Comment>个人推测:[edx]是基址,esi是偏移量
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12778D</Address>
+      <Comment>int theBlendTime
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12778F</Address>
+      <Comment>Reanimation* reanimation
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127790</Address>
+      <Comment>原来的函数调用:aHeadReanim-&gt;PlayReanim("anim_shooting", ReanimLoopType::REANIM_PLAY_ONCE_AND_HOLD, 20, 38.0f);
+此处进行了函数展开
+StartBlend()
+虽然保存了esi寄存器,但是它不会改变esi的值
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127795</Address>
+      <Comment>(38.00)
+将存储器中的实型压栈
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12779B</Address>
+      <Comment>mAnimRate = theAnimRate;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277A1</Address>
+      <Comment>0.0压入浮点寄存器栈
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277A3</Address>
+      <Comment>int&amp; theFrameCount
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277A4</Address>
+      <Comment>mLoopCount = 0;
+动画循环率
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277A7</Address>
+      <Comment>从第几帧开始
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277B0</Address>
+      <Comment>int&amp; theFrameCount
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277B1</Address>
+      <Comment>("anim_shooting")
+edx = const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277B6</Address>
+      <Comment>mLastFrameTime = -1.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277BC</Address>
+      <Comment>eax = Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277CC</Address>
+      <Comment>再次进行函数展开
+Reanimation::GetFramesForLayer(int&amp; theFrameCount, int&amp; theFrameStart, edx = const char* theTrackName, eax = Reanimation* this)
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277D9</Address>
+      <Comment>通过多次比较,判断是否到了射击时间
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277EF</Address>
+      <Comment>跳转到返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277F5</Address>
+      <Comment>如果属性倒计时等于零,那就要做接下来的事情
+在参考源码中属性为零的分支在后面,但是此处属性为零的分支更靠前
+基址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1277FD</Address>
+      <Comment>mEffectSystem
+动画信息
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127803</Address>
+      <Comment>ecx没有实际含义
+因为接下来要进行浮点数传参,所以仅仅只是占个位置而已
+换成sub esp,4也可以
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127804</Address>
+      <Comment>??
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127807</Address>
+      <Comment>float theAnimRate
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12781B</Address>
+      <Comment>获取动画对象
+esi = Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12781D</Address>
+      <Comment>ReanimLoopType theLoopType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12781F</Address>
+      <Comment>("anim_head_idle")
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127824</Address>
+      <Comment>eax = int theBlendTime
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127829</Address>
+      <Comment>aHeadReanim-&gt;PlayReanim("anim_head_idle", ReanimLoopType::REANIM_PLAY_ONCE_AND_HOLD, 20, 15.0f);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12782E</Address>
+      <Comment>重置属性倒计时
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12783D</Address>
+      <Comment>创建子弹开始
+eax被设置为基址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127841</Address>
+      <Comment>mMuteSoundsForCutscene
+解释一下:PlayFoley被进行了函数展开:
+if (!mMuteSoundsForCutscene)
+{
+	mSoundSystem-&gt;PlayFoley(theFoleyType);
+}
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12784A</Address>
+      <Comment>(69FAD0)
+FoleyParams* gFoleyParamArray;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127850</Address>
+      <Comment>某个float型局部变量被设置为0
+破案:这个局部变量是aPitch
+
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127854</Address>
+      <Comment>两层函数展开
+展开到了void TodFoley::PlayFoley(FoleyType theFoleyType)函数体内部
+
+if (aFoleyParams-&gt;mPitchRange != 0.0f)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12785A</Address>
+      <Comment>mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127862</Address>
+      <Comment>获取浮点标志C2和C3的值
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127867</Address>
+      <Comment>aFoleyParams-&gt;mPitchRange
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12786D</Address>
+      <Comment>浮点数传参占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12786E</Address>
+      <Comment>float range
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127871</Address>
+      <Comment>st(0) = Sexy::Rand(aFoleyParams-&gt;mPitchRange)
+浮点数函数通过st(0)返回
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127876</Address>
+      <Comment>aPitch = st(0)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12787A</Address>
+      <Comment>Sexy::Rand可能是一个_cdecl(本来就是,因为是全局函数而非方法)
+所以需要调用者平衡堆栈
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12787D</Address>
+      <Comment>加载aPitch用于传参
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127881</Address>
+      <Comment>浮点传参占位
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127882</Address>
+      <Comment>eax = FoleyType theFoleyType
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127887</Address>
+      <Comment>float thePitch
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12788A</Address>
+      <Comment>ecx = LawnApp* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12788C</Address>
+      <Comment>PlayFoleyPitch(theFoleyType, aPitch);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127893</Address>
+      <Comment>极其弱智的代码混淆
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127895</Address>
+      <Comment>edx被赋值为基址
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127897</Address>
+      <Comment>获取动画信息,保存在eax中
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12789D</Address>
+      <Comment>粒子上限
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278A0</Address>
+      <Comment>将僵尸动画编号保存至eax中
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278AB</Address>
+      <Comment>类似于豌豆僵尸的[edi+edi*4],虽然我也不知道具体含义
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278B3</Address>
+      <Comment>("anim_head1")
+const char* theTrackName
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278B8</Address>
+      <Comment>ebx = Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278BA</Address>
+      <Comment>int aTrackIndex = aBodyReanim-&gt;FindTrackIndex("anim_head1");
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278BF</Address>
+      <Comment>(-10000.00)
+这是一个全局常量
+constexpr const float DEFAULT_FIELD_PLACEHOLDER = -10000.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278C5</Address>
+      <Comment>float 某局部变量 = -10000.00f
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278C9</Address>
+      <Comment>ebx = int theTrackIndex
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278CB</Address>
+      <Comment>float 某局部变量 = -10000.00f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278CF</Address>
+      <Comment>寄存器清零用于赋值
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278D1</Address>
+      <Comment>float 某局部变量 = -10000.00f
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278D5</Address>
+      <Comment>int 某局部变量 = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278D9</Address>
+      <Comment>float 某局部变量 = -10000.00f
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278DD</Address>
+      <Comment>int 某局部变量 = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278E1</Address>
+      <Comment>float 某局部变量 = -10000.00f
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278E5</Address>
+      <Comment>Reanimation* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278E6</Address>
+      <Comment>float 某局部变量 = -10000.00f
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278EA</Address>
+      <Comment>eax = ReanimatorTransform* theTransformCurrent
+
+说明:这就可以解释为什么要进行那么多赋值操作了,因为这里定义了一个对象:
+ReanimatorTransform aTransform;
+对象创建在栈区,所以需要好几条指令进行数据初始化(毕竟对象占用内存很大)
+
+实际上应该不是局部变量,而是对象的属性
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278EE</Address>
+      <Comment>float 某局部变量 = -10000.00f
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278F2</Address>
+      <Comment>(0)
+mText("")
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1278FE</Address>
+      <Comment>aBodyReanim-&gt;GetCurrentTransform(aTrackIndex, &amp;aTransform);
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127903</Address>
+      <Comment>mPosY
+回忆一下edi是僵尸指针
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127906</Address>
+      <Comment>获取僵尸图像图层
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127909</Address>
+      <Comment>aTransform.mTransY
+mPosY + aTranform.mTransY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12790D</Address>
+      <Comment>僵尸所在行数
+ebp不再指向栈基址
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127910</Address>
+      <Comment>僵尸图层
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127914</Address>
+      <Comment>(6.00)
+mPosY + aTransform.mTransY + 6.0f;
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12791A</Address>
+      <Comment>float aOriginY = mPosY + aTransform.mTransY + 6.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127922</Address>
+      <Comment>利用 SSE 相关指令将 st(0) 的浮点数强制转化为整数存储在 eax 中。
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127927</Address>
+      <Comment>mPosX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12792A</Address>
+      <Comment>mPosX + aTransform.mTransX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12792E</Address>
+      <Comment>综合之前的操作,这是把[esp+14]转化为了整型
+注意[esp+14]就是aOriginY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127932</Address>
+      <Comment>(9.00)
+mPosX + aTransform.mTransX - 9.0f
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127938</Address>
+      <Comment>float aOriginX = mPosX + aTransform.mTransX - 9.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127940</Address>
+      <Comment>同上,强转aOriginX为整型
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127945</Address>
+      <Comment>先获取mBoard,然后下一行计算偏移
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127948</Address>
+      <Comment>获取子弹数组(严格来讲不是数组类型,但是是一个线性表)
+属性DataArray&lt;Projectile&gt; mProjectiles
+esi = DataArray&lt;Projectile&gt;* this
+
+函数表有误,不是esi,应该是edi
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12794E</Address>
+      <Comment>aOriginX转化完成
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127952</Address>
+      <Comment>此处又进行了函数展开的编译优化
+Projectile* aProjectile = mProjectiles.DataArrayAlloc();
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127957</Address>
+      <Comment>(int)aOriginY
+edi = int theY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12795B</Address>
+      <Comment>新分配的子弹指针存储在esi中
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12795D</Address>
+      <Comment>mBoard
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127960</Address>
+      <Comment>eax = int theX /*(int)aOrginX*/
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127964</Address>
+      <Comment>ecx = Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127966</Address>
+      <Comment>Board::PixelToGridX(edi = int theY, eax = int theX, ecx = Board* this)
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12796B</Address>
+      <Comment>这里展开了很多层
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12796D</Address>
+      <Comment>这个地方一般不会发生跳转
+
+展开前函数定义:
+int Board::PixelToGridXKeepOnBoard(int theX/*(int)aOriginX*/, int theY/*(int)aOriginY*/)
+{
+	int aGridX = PixelToGridX(theX, theY);
+	return max(aGridX, 0);
+}
+
+调用结束后,会想办法将结果保存至edi
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12796F</Address>
+      <Comment>eax = int theX/*(int)aOriginX*/
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127973</Address>
+      <Comment>ecx = Board* this
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12797A</Address>
+      <Comment>保存结果至edi
+为什么调用了两次?代码混淆?
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127980</Address>
+      <Comment>现在edi就是刚刚Board::PixelToGridX的返回结果了
+加载横坐标(int)aOriginX入浮点数栈
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127984</Address>
+      <Comment>eax = int theGridY
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127986</Address>
+      <Comment>ecx = int theGridX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127988</Address>
+      <Comment>子弹类型设置为僵尸豌豆
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12798F</Address>
+      <Comment>这里把[esp+10]又转化成了浮点数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127997</Address>
+      <Comment>子弹-&gt;mPosX = aOriginX
+严格的讲aOriginX被转整数然后又转回浮点数已经不同了,但是为了方便还是这么写
+高级语言源码:mPosY = theY
+
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279A6</Address>
+      <Comment>子弹-&gt;mPosY = aOriginY,原因同理
+高级语言源码:mPosX = theX
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279AB</Address>
+      <Comment>mPosZ = 0.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279AE</Address>
+      <Comment>mVelX = 0.0f;
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279B1</Address>
+      <Comment>mVelY = 0.0f;
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279B4</Address>
+      <Comment>mVelZ = 0.0f;
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279B7</Address>
+      <Comment>mAccZ = 0.0f;
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279BA</Address>
+      <Comment>mBoard-&gt;GridToPixelY(aGridX, theRow)
+ebx已经是mBoard指针了,所以没有进行专门的传参
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279BF</Address>
+      <Comment>mShadowY的中间结果
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279C3</Address>
+      <Comment>mShadowY的中间结果
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279C7</Address>
+      <Comment>CE自动生成的注释是255,有问题,这是32位的按位或
+mov eax,FFFFFFFF
+解释为-1更合适
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279CA</Address>
+      <Comment>见5279E7
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279CC</Address>
+      <Comment>mHitTorchwoodGridX = -1;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279D5</Address>
+      <Comment>mLastPortalX = -1;
+参考源码中没有
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279DB</Address>
+      <Comment>二维数组变址寻址
+如果看不懂可以参照源代码:
+mOnHighGround = mBoard-&gt;mGridSquareType[aGridX][theRow] == GridSquareType::GRIDSQUARE_HIGH_GROUND;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279DF</Address>
+      <Comment>6*edi+ebp+90(十进制的90)
+5A
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279E3</Address>
+      <Comment>mShadowY = mBoard-&gt;GridToPixelY(aGridX, theRow) + 67.0f;
+GridToPixelY已在刚刚解释过
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279E7</Address>
+      <Comment>mMotionType = ProjectileMotion::MOTION_STRAIGHT;
+这是一个默认值,具体运动方式需要手动设置
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279EE</Address>
+      <Comment>子弹-&gt;mFrame = 0
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279F1</Address>
+      <Comment>mShadowY被写入
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279F4</Address>
+      <Comment>子弹-&gt;mNumFrames = 1;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+1279FD</Address>
+      <Comment>子弹-&gt;行数 = 僵尸-&gt;行数
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A00</Address>
+      <Comment>mCobTargetX = 0.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A06</Address>
+      <Comment>mDamageRangeFlags = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A09</Address>
+      <Comment>mDead = false;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A0C</Address>
+      <Comment>mAttachmentID = AttachmentID::ATTACHMENTID_NULL;
+子弹附件动画编号
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A0F</Address>
+      <Comment>mCobTargetRow = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A15</Address>
+      <Comment>mTargetZombieID = ZombieID::ZOMBIEID_NULL;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A1B</Address>
+      <Comment>回忆一下,ebx是mBoard
+[ebx+168+sizeof(int)*(6*edi+ebp)]
+获取格子类型,并与04（即:高地）作比较
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A22</Address>
+      <Comment>写入属性mOnHighGround
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A25</Address>
+      <Comment>获取场景类型
+此为函数展开:
+bool Board::StageHasRoof()
+{
+	return (mBackground == BackgroundType::BACKGROUND_5_ROOF || mBackground == BackgroundType::BACKGROUND_6_BOSS);
+}
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A2B</Address>
+      <Comment>BackgroundType::BACKGROUND_5_ROOF
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A30</Address>
+      <Comment>BackgroundType::BACKGROUND_6_BOSS
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A35</Address>
+      <Comment>横坐标
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A39</Address>
+      <Comment>(480.00)
+判断子弹横坐标处于屋顶中线左侧还是右侧
+
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A4E</Address>
+      <Comment>mShadowY -= 12.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A53</Address>
+      <Comment>子弹不满足屋顶中线条件的处理逻辑
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A55</Address>
+      <Comment>重新恢复edx为子弹图层
+因为call 41DF60改变过它
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A59</Address>
+      <Comment>mRotation = 0.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A61</Address>
+      <Comment>mRotationSpeed = 0.0f;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A64</Address>
+      <Comment>横坐标
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A68</Address>
+      <Comment>mRenderOrder = theRenderOrder;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A6B</Address>
+      <Comment>mProjectileAge = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A6E</Address>
+      <Comment>mClickBackoffCounter = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A71</Address>
+      <Comment>mWidth = 40;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A74</Address>
+      <Comment>mHeight = 40;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A77</Address>
+      <Comment>mAnimTicksPerFrame = 0;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A7A</Address>
+      <Comment>mAnimCounter = 0;
+编译器很聪明,直接跳过了函数展开的一堆分支判断
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A7D</Address>
+      <Comment>浮点数强转整数指令:
+eax = (int)st(0)
+此时浮点寄存器栈顶为横坐标
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A82</Address>
+      <Comment>mPosY压入浮点寄存器栈传参
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A86</Address>
+      <Comment>mX = (int)mPosX;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A8E</Address>
+      <Comment>mY = (int)mPosY;
+这条指令之后,AddProjectile函数展开完毕
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+127A91</Address>
+      <Comment>aProjectile-&gt;mMotionType = ProjectileMotion::MOTION_BACKWARDS;
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12AD5F</Address>
+      <Comment>UpdateZombieWalking()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12AD78</Address>
+      <Comment>CheckSquish()
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12AD7D</Address>
+      <Comment>检查僵尸是否处于被吹走状态
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+12F637</Address>
+      <Comment>无须断点
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"popcapgame1.exe"+13450C</Address>
+      <Comment>处于Zombie::DrawShadow(Graphics* g, edi = Zombie* this)函数体中
+
+</Comment>
+    </DisassemblerComment>
+  </DisassemblerComments>
+</CheatTable>
